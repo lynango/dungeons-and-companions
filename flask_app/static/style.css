@@ -1,0 +1,19 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P:regular);
+
+body, html {
+    height: 100%;
+}
+.background {
+    background-image: url("pixel-scene.webp");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+.background-title {
+    font-family: 'Press Start 2P';
+    font-size: 60px;
+    text-align: center;
+    color: white;
+    padding-top: 3%;
+}
