@@ -17,7 +17,7 @@ class Profession:
     #get stats
     @classmethod
     def get_stats(cls, data):
-        query = "SELECT * FROM classes WHERE name=%(profession)s"
+        query = "SELECT * FROM professions WHERE name=%(profession)s"
         results = connectToMySQL(cls.db_name).query_db(query, data)
         print(results)
         if len(results) < 1:
