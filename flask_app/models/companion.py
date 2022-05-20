@@ -52,7 +52,7 @@ class Companion:
     @classmethod
     def get_all(cls, data):
         query = "SELECT * FROM companions WHERE user_id=%(user_id)s"
-        return connectToMySQL(cls.db).query_db(query, data)
+        return connectToMySQL(cls.db_name).query_db(query, data)
 
     #update character information
     @classmethod
@@ -62,7 +62,7 @@ class Companion:
         SET name=%(name)s, picture=%(picture)s, story=%(story)s
         WHERE id=%(id)s
         """
-        return connectToMySQL(cls.db).query_db(query, data)
+        return connectToMySQL(cls.db_name).query_db(query, data)
     
     #update character stats
     @classmethod
@@ -72,7 +72,7 @@ class Companion:
         SET health=%(health)s, strength=%(strength)s, defense=%(defense)s, luck=%(luck)s, level=%(level)s
         WHERE id=%(id)s
         """
-        return connectToMySQL(cls.db).query_db(query, data)
+        return connectToMySQL(cls.db_name).query_db(query, data)
     
     #update character score
     @classmethod
@@ -82,7 +82,7 @@ class Companion:
         SET score=%(score)s, level=%(level)s, win=%(win)s, loss=%(loss)s
         WHERE id=%(id)s
         """
-        return connectToMySQL(cls.db).query_db(query, data)
+        return connectToMySQL(cls.db_name).query_db(query, data)
     
     #delete character
     @classmethod
@@ -90,4 +90,4 @@ class Companion:
         query = """
         DELETE FROM companions WHERE id=%(id)s
         """
-        return connectToMySQL(cls.db).query_db(query, data)
+        return connectToMySQL(cls.db_name).query_db(query, data)
