@@ -1,7 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 
-class Class:
+class Profession:
     db_name = "d&c_database"
 
     def __init__(self, data):
