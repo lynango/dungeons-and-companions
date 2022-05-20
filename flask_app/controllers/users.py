@@ -10,7 +10,7 @@ bcrypt = Bcrypt(app)
 def index():
     return render_template('login_and_registration.html')
 
-#Process user's request to register
+#Process user's request to register and redirects them to the welcome page
 @app.route('/register',methods=['POST'])
 def register():
     if not User.registration(request.form):
@@ -25,7 +25,18 @@ def register():
     session['user_id'] = user_id
     return redirect('/welcome')
 
-#Process user's request to login
+#Validation checkpoint for registered users
+@app.route('/welcome')
+def welcome():
+    if 'user_id' not in session:
+        return redirect('/logout')  # ->Checks to see if the user had login or not. If not, the user is redirected to the front page.
+    data ={
+        'id': session['user_id']    # ->If the user had logged-in, the user is directed to the welcome page
+    }
+    one_user = User.get_one(data)                                                                                                                                              
+    return render_template("welcome_page.html", current_user = one_user)
+
+#Process user's request to login and redirects them to the dashboard page
 @app.route('/login',methods=['POST'])
 def login():
     data = {"email": request.form['email']} 
@@ -37,21 +48,23 @@ def login():
         flash("Invalid Email/Password","login") 
         return redirect('/')
     session['user_id'] = user_with_email.id
-    return redirect('/welcome') 
+    return redirect('/dashboard') 
 
-#Validation checkpoint for logged in users
-@app.route('/welcome')
+#Validation checkpoint for logged-in users
+@app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
         return redirect('/logout')  # ->Checks to see if the user had login or not. If not, the user is redirected to the front page.
     data ={
-        'id': session['user_id']    # ->If the user had login, the user is directed to the home page
+        'id': session['user_id']    # ->If the user had logged-in, the user is directed to the dashboard page
     }
     one_user = User.get_one(data)                                                                                                                                              
-    return render_template("welcome_page.html", current_user = one_user)
+    return render_template("dashboard.html", current_user = one_user)
 
 #Process user's request to logout
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
+
+    
