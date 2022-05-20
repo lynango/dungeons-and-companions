@@ -6,7 +6,7 @@ class Profession:
 
     def __init__(self, data):
         self.id = data['id']
-        self.name = data['name']
+        self.name = data['profession']
         self.health = data['health']
         self.strength = data['strength']
         self.defense = data['defense']
@@ -17,7 +17,7 @@ class Profession:
     #get stats
     @classmethod
     def get_stats(cls, data):
-        query = "SELECT * FROM classes WHERE name=%(name)s"
+        query = "SELECT * FROM classes WHERE name=%(profession)s"
         results = connectToMySQL(cls.db_name).query_db(query, data)
         print(results)
         if len(results) < 1:
@@ -30,27 +30,27 @@ class Profession:
     # #get health
     # @classmethod
     # def get_health(cls, data):
-    #     query = "SELECT health FROM classes WHERE name=%(name)s"
+    #     query = "SELECT * FROM classes WHERE name=%(name)s"
     #     result = connectToMySQL(cls.db_name).query_db(query, data)
-    #     return result
+    #     return cls(result[0]).health
     
     # #get strength
     # @classmethod
     # def get_strength(cls, data):
-    #     query = "SELECT strength FROM classes WHERE name=%(name)s"
+    #     query = "SELECT * FROM classes WHERE name=%(name)s"
     #     result = connectToMySQL(cls.db_name).query_db(query, data)
-    #     return result
+    #     return cls(result[0]).strength
     
     # #get defense
     # @classmethod
     # def get_defense(cls, data):
-    #     query = "SELECT defense FROM classes WHERE name=%(name)s"
+    #     query = "SELECT * FROM classes WHERE name=%(name)s"
     #     result = connectToMySQL(cls.db_name).query_db(query, data)
-    #     return result
+    #     return cls(result[0]).defense
     
     # #get luck
     # @classmethod
     # def get_luck(cls, data):
-    #     query = "SELECT luck FROM classes WHERE name=%(name)s"
+    #     query = "SELECT * FROM classes WHERE name=%(name)s"
     #     result = connectToMySQL(cls.db_name).query_db(query, data)
-    #     return result
+    #     return cls(result[0]).luck

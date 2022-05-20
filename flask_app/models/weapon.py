@@ -6,7 +6,7 @@ class Weapon:
 
     def __init__(self, data):
         self.id = data['id']
-        self.name = data['name']
+        self.name = data['weapon']
         self.strength = data['strength']
         self.defense = data['defense']
         self.luck = data['luck']
@@ -16,7 +16,7 @@ class Weapon:
     #get stats
     @classmethod
     def get_stats(cls, data):
-        query = "SELECT * FROM classes WHERE name=%(name)s"
+        query = "SELECT * FROM classes WHERE name=%(weapon)s"
         results = connectToMySQL(cls.db_name).query_db(query, data)
         print(results)
         if len(results) < 1:
