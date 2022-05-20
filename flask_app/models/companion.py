@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
+from flask import session
 from flask_app.models.breed import Breed
 from flask_app.models.profession import Profession
 from flask_app.models.weapon import Weapon
@@ -91,3 +92,28 @@ class Companion:
         DELETE FROM companions WHERE id=%(id)s
         """
         return connectToMySQL(cls.db_name).query_db(query, data)
+
+    #SCRATCH THAT
+    # #calculate INITIAL stats from user choices(concept)
+    # @classmethod
+    # def calc_stat(cls, breed, profession, weapon):
+    #     #assuming breed/profession/weapon data passed in is all in dictionary format
+    #     total_stats = { 
+    #         'id' : session['character_id'], #define in controller
+    #         'health' : Breed.get_stats(breed).health + Profession.get_stats(profession).health + Weapon.get_stats(weapon).health,
+    #         'strength' : Breed.get_stats(breed).strength + Profession.get_stats(profession).strength + Weapon.get_stats(weapon).strength,
+    #         'defense' : Breed.get_stats(breed).defense + Profession.get_stats(profession).defense + Weapon.get_stats(weapon).defense,
+    #         'luck' : Breed.get_stats(breed).luck + Profession.get_stats(profession).luck + Weapon.get_stats(weapon).luck,
+    #         'level' : 1
+    #     }
+    #     Companion.update_stat(total_stats)
+    #     #no return statement required(?)
+        
+    # data = {
+    #     'health' : Breed.get_stats(request.form).health + Profession.get_stats(request.form).health + Weapon.get_stats(request.form).health,
+    #     'strength' : Breed.get_stats(request.form).strength + Profession.get_stats(request.form).strength + Weapon.get_stats(request.form).strength,
+    #     'defense' : Breed.get_stats(request.form).defense + Profession.get_stats(request.form).defense + Weapon.get_stats(request.form).defense,
+    #     'luck' : Breed.get_stats(request.form).luck + Profession.get_stats(request.form).luck + Weapon.get_stats(request.form).luck
+    # }
+    
+        

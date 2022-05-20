@@ -6,7 +6,7 @@ class Breed:
 
     def __init__(self, data):
         self.id = data['id']
-        self.name = data['name']
+        self.name = data['breed']
         self.health = data['health']
         self.strength = data['strength']
         self.defense = data['defense']
@@ -17,7 +17,7 @@ class Breed:
     #get stats
     @classmethod
     def get_stats(cls, data):
-        query = "SELECT * FROM classes WHERE name=%(name)s"
+        query = "SELECT * FROM classes WHERE name=%(breed)s"
         results = connectToMySQL(cls.db_name).query_db(query, data)
         print(results)
         if len(results) < 1:
