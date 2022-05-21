@@ -18,3 +18,28 @@ body, html {
     color: white;
     padding-top: 3%;
 }
+/* welcome page */
+#catzilla {
+    height: 70%;
+    width: 35%;
+}
+
+.backgrounds {
+    background-color: rgb(15, 12, 12);
+}
+
+#text {
+    font-family: 'Press Start 2P';
+    align-self: center;
+}
+
+#red {
+    background-color: rgba(224,39,32,255);
+}
+
+/* NavBar */
+#nav-title {
+    font-family: 'Press Start 2P';
+    font-size: 20px;
+    color: white;
+}

@@ -8,9 +8,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="background">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+        <p id="nav-title" style="font-size: 30px;" class="navbar-brand">Dungeons and Companions</p>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a id="nav-title" class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+            <a id="nav-title" class="nav-link active" aria-current="page" href="#">Scoreboard</a>
+            <a id="nav-title" class="nav-link" href="/logout">Logout</a>
+        </div>
+    </nav>
     <h1 class="text-center">Create Character</h1>
-    <form action="/create/companion" method="post">
+    <form style="background-color: #60c6ef" class="m-5 col-5 mx-auto"  action="/create/companion" method="post">
         <div>
             <label for="name">Name</label>
             <input type="text" name="name">
