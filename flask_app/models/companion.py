@@ -80,7 +80,7 @@ class Companion:
     def update_score(cls, data):
         query = """
         UPDATE companions 
-        SET score=%(score)s, level=%(level)s, win=%(win)s, loss=%(loss)s
+        SET score= score + %(score)s, level= level + %(level)s, win= win + %(win)s, loss= loss + %(loss)s
         WHERE id=%(id)s
         """
         return connectToMySQL(cls.db_name).query_db(query, data)

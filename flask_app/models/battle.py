@@ -4,18 +4,25 @@ from flask import session
 import random
 from flask_app.models.companion import Companion
 
-class Character:
+class Battle:
     def __init__(self, data):
         self.health = data['health']
         self.strength = data['strength']
         self.defense = data['defense']
         self.luck = data['luck']
     
-    #Calls this function each turn
+    #Dice roll for each turn
     @classmethod
-    def roll_dice(luck):
+    def roll_dice(luck=0):
         roll = random.randint(1+luck, 100+luck)
         if roll > 50:
             return True
         else:
             return False
+        
+    #pick random ability
+    @classmethod
+    def ability():
+        num = random.randint(1, 3)
+        ability = f'ability{num}'
+        return ability
