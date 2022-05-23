@@ -70,7 +70,7 @@ class Companion:
     def update_stat(cls, data):
         query = """
         UPDATE companions 
-        SET health=%(health)s, strength=%(strength)s, defense=%(defense)s, luck=%(luck)s, level=%(level)s
+        SET health= health+%(health)s, strength= strength+%(strength)s, defense= defense+%(defense)s, luck= luck+%(luck)s
         WHERE id=%(id)s
         """
         return connectToMySQL(cls.db_name).query_db(query, data)
@@ -97,7 +97,7 @@ class Companion:
     @classmethod
     def leaderboard(cls):
         query = """
-        SELECT MAX(score), companions.win, companions.loss, companions.level, companions.updated_at, users.first_name, users.last_name, user_id
+        SELECT MAX(score), companions.name, companions.win, companions.loss, companions.level, companions.updated_at, users.first_name, users.last_name, user_id
         FROM companions JOIN users ON companions.user_id=users.id 
         GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20
         """
