@@ -81,3 +81,8 @@ def retire_companion(id):
     }
     Companion.delete(data)
     return redirect('/dashboard')
+
+#leaderboard
+@app.route('/leaderboard')
+def leaderboard():
+    return render_template('leaderboard.html', leaderboard=Companion.leaderboard())

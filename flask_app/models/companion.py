@@ -93,6 +93,16 @@ class Companion:
         """
         return connectToMySQL(cls.db_name).query_db(query, data)
 
+    #get best score of all users (top 20)
+    @classmethod
+    def leaderboard(cls):
+        query = """
+        SELECT MAX(score), companions.win, companions.loss, companions.level, companions.updated_at, users.first_name, users.last_name, user_id
+        FROM companions JOIN users ON companions.user_id=users.id 
+        GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20
+        """
+        return connectToMySQL(cls.db).query_db(query)
+    
     #SCRATCH THAT
     # #calculate INITIAL stats from user choices(concept)
     # @classmethod
