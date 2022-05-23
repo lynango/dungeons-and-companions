@@ -8,7 +8,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <h1 class="text-center">Welcome Fellow Adventure!</h1>
+<body class="backgrounds">
+    <h1 class="background-title text-center">Catzilla is Attacking!!</h1>
+    <div class="d-inline-flex p-3">
+        <img id="catzilla" class="rounded float-start" src="static/catzilla.jpeg" alt="catzilla">
+        <h2 id="text" class="text-white">Catzilla is attacking!! <br> It is up to you and your companions to save the city. Can you make the ultimate companion, defeat the evil Catzilla, and save the day?!</h2>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a href="/dashboard" id="red" class="btn btn-danger">Are you Ready?</a>
+    </div>
 </body>
 </html>
