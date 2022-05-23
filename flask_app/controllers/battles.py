@@ -104,4 +104,10 @@ def end():
         data['win'] = 0
         data['loss'] = 1
     Companion.update_score(data)
+    #level up stat update
+    data['health'] = session['level_gain'] * 3
+    data['strength'] = session['level_gain'] * 1
+    data['defense'] = 0
+    data['luck'] = 0
+    Companion.update_stat(data)
     return render_template('battle_result.html') #result page
