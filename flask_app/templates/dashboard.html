@@ -23,6 +23,11 @@
     </nav>
     <h1 class="text-center">Your Companions</h1>
     <table class="table table-striped">
+        <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
         <tbody>
             {%for companion in companions%}
             <tr>
@@ -30,12 +35,14 @@
                 <td>{{companion.name}}</td>
                 <td>
                     <a href="#">View</a>
-                    <a href="//update-companion">Edit</a>
+                    <a href="//update-companion/{{companion.id}}">Edit</a>
                     <a href="/delete/companion/{{companion.id}}">Retire</a>
+                    <a href="/battle_start/{{companion.id}}">BATTLE!</a>
                 </td>
             </tr>
             {%endfor%}
         </tbody>
     </table>
+    <a href="/create-companion">Create Companion</a>
 </body>
 </html>

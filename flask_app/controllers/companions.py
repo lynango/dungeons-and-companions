@@ -16,7 +16,7 @@ def make_companion():
     return render_template('create_character.html')
 
 #Directs the user to the update companion page
-@app.route('/update-companion')
+@app.route('/update-companion/<int:id>')
 def update_companion():
     if 'user_id' not in session:
         return redirect('/logout')
@@ -41,7 +41,7 @@ def create_companion():
         "picture": request.form["picture"],
         "story": request.form["story"],
         # This section below is still being worked on
-        "health": 10,
+        "health": 100,
         "strength": 9,
         "defense": 5,
         "luck": 7,      
