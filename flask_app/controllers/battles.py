@@ -19,6 +19,7 @@ def battle_start():
     session['boss_health'] = 100
     session['boss_strength'] = 10
     session['boss_defense'] = 5
+    session['boss_luck'] = 0
     session['companion'] = Companion.get_one(data)
     session['companion_max_health'] = session['companion'].health
     session['companion_img'] = session['companion'].picture
@@ -48,12 +49,13 @@ def roll_dice():
     data = {
         'id' : session['companion_id']
     }
-    luck = session['companion_luck']
+    companion_luck = session['companion_luck']
+    boss_luck = session['boss_luck']
     character = session['companion'].name
     ability_used = Battle.ability()
     ability_name = session[f'{ability_used}']
     #companion roll
-    if Battle.roll_dice(luck):
+    if Battle.roll_dice(companion_luck):
         damage_dealt = session['companion_strength'] - session['boss_defense']
         session['combat_text'] += f'{character} used {ability_name} and successfully dealt {damage_dealt} to Catzilla!'
         session['boss_health'] -= damage_dealt
@@ -71,7 +73,7 @@ def roll_dice():
     if session['gg']:
         return redirect('/ongoing')
     #boss roll
-    if Battle.roll_dice():
+    if Battle.roll_dice(boss_luck):
         boss_damage = session['boss_strength'] - session['companion_defense']
         session['combat_text'] += f'Catzilla retaliated and dealt {boss_damage} to {character}!'
         session['companion_health'] -= boss_damage
