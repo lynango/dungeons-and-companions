@@ -24,14 +24,14 @@
     <h1 class="text-center">Your Companions</h1>
     <table class="table table-striped">
         <tbody>
-            {%for companion in companions%}
+            {%for one_companion in all_companions%}
             <tr>
-                <td>{{companion.picture}}</td>
-                <td>{{companion.name}}</td>
+                <td>{{one_companion.picture}}</td>
+                <td>{{one_companion.name}}</td>
                 <td>
                     <a href="#">View</a>
                     <a href="//update-companion">Edit</a>
-                    <a href="/delete/companion/{{companion.id}}">Retire</a>
+                    <a href="/delete/companion/{{one_companion.id}}">Retire</a>
                 </td>
             </tr>
             {%endfor%}
