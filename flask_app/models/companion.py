@@ -66,14 +66,14 @@ class Companion:
         return companions
 
     #update character information
-    @classmethod
-    def update_info(cls, data):
-        query = """
-        UPDATE companions 
-        SET name=%(name)s, picture=%(picture)s, story=%(story)s
-        WHERE id=%(id)s
-        """
-        return connectToMySQL(cls.db_name).query_db(query, data)
+    # @classmethod
+    # def update_info(cls, data):
+    #     query = """
+    #     UPDATE companions 
+    #     SET name=%(name)s, picture=%(picture)s, story=%(story)s
+    #     WHERE id=%(id)s
+    #     """
+    #     return connectToMySQL(cls.db_name).query_db(query, data)
     
     #update character stats
     @classmethod
@@ -136,4 +136,26 @@ class Companion:
     #     'luck' : Breed.get_stats(request.form).luck + Profession.get_stats(request.form).luck + Weapon.get_stats(request.form).luck
     # }
     
-        
+# Retrieve all messages with creator
+    @classmethod
+    def get_all_companions_with_creator(cls):
+        query = """
+        SELECT * FROM companions 
+        JOIN users ON companions.user_id = users.id 
+        """
+        results = connectToMySQL(cls.db_name).query_db(query)
+        all_companions = []
+        for row in results:
+            one_companion = cls(row)
+            user_data = {
+                "id": row['users.id'],
+                "password": row['password'],
+                "first_name": row ['first_name'],
+                "last_name": row ['last_name'],
+                "email": row ['email'],
+            }
+            author = user.User(user_data)
+            # Associate the Message class instance with the User class instance by filling in the empty creator attribute in the Message class
+            one_companion.creator = author
+            all_companions.append(one_companion)
+        return all_companions        
