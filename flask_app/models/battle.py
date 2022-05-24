@@ -13,11 +13,7 @@ class Battle:
     
     #Dice roll for each turn
     @classmethod
-<<<<<<< HEAD
     def roll_dice(cls, luck=0):
-=======
-    def roll_dice(cls,luck=0):
->>>>>>> main
         roll = random.randint(1+luck, 100+luck)
         if roll > 50:
             return True

@@ -41,14 +41,14 @@ def create_companion():
         "picture": request.form["picture"],
         "story": request.form["story"],
         # This section below is still being worked on
-        "health": 100,
-        "strength": 9,
-        "defense": 5,
-        "luck": 7,      
-        # "health": Breed.get_stats(request.form).health + Profession.get_stats(request.form).health + Weapon.get_stats(request.form).health,
-        # "strength": Breed.get_stats(request.form).strength + Profession.get_stats(request.form).strength + Weapon.get_stats(request.form).strength,
-        # "defense": Breed.get_stats(request.form).defense + Profession.get_stats(request.form).defense + Weapon.get_stats(request.form).defense,
-        # "luck": Breed.get_stats(request.form).luck + Profession.get_stats(request.form).luck + Weapon.get_stats(request.form).luck,
+        # "health": 100,
+        # "strength": 9,
+        # "defense": 5,
+        # "luck": 7,      
+        "health": Breed.get_stats(request.form).health + Profession.get_stats(request.form).health,
+        "strength": Breed.get_stats(request.form).strength + Profession.get_stats(request.form).strength + Weapon.get_stats(request.form).strength,
+        "defense": Breed.get_stats(request.form).defense + Profession.get_stats(request.form).defense + Weapon.get_stats(request.form).defense,
+        "luck": Breed.get_stats(request.form).luck + Profession.get_stats(request.form).luck + Weapon.get_stats(request.form).luck,
         "user_id": session["user_id"]
     }
     Companion.create(data)

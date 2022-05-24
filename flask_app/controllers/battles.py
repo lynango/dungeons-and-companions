@@ -20,7 +20,7 @@ def battle_start(id):
         session.pop('combat_text')
     session['boss_health'] = 100
     session['boss_strength'] = 10
-    session['boss_defense'] = 5
+    session['boss_defense'] = 3
     session['boss_luck'] = 0
     session['companion_max_health'] = companion.health
     session['companion_img'] = companion.picture
@@ -53,14 +53,9 @@ def roll_dice():
     companion = Companion.get_one(data)
     companion_luck = session['companion_luck']
     boss_luck = session['boss_luck']
-<<<<<<< HEAD
-    character = session['companion'].name
-    ability_used = Battle.skill()
-=======
     character = companion.name
     ability_used = Battle.skill()
     print (session['combat_text'])
->>>>>>> main
     ability_name = session[f'{ability_used}']
     #companion roll
     if Battle.roll_dice(companion_luck):

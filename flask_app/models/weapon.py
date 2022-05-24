@@ -6,7 +6,7 @@ class Weapon:
 
     def __init__(self, data):
         self.id = data['id']
-        self.name = data['weapon']
+        self.name = data['name']
         self.strength = data['strength']
         self.defense = data['defense']
         self.luck = data['luck']
