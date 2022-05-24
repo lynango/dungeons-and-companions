@@ -26,20 +26,20 @@
         <tr>
             <th>Picture</th>
             <th>Name</th>
+            <th>Made By</th>
             <th>Actions</th>
         </tr>
         <tbody>
             {%for one_companion in all_companions%}
             <tr>
-                <td>{{one_companion.picture}}</td>
+                <td><img src={{one_companion.picture}} alt="Picture of a Companion" width="150" height="150"/></td>
                 <td>{{one_companion.name}}</td>
+                <td>{{one_companion.creator.first_name}}</td>
                 <td>
-                    {#<a href="#">View</a>
-                    <a href="//update-companion">Edit</a>
+                    <a href="/companion/{{one_companion.id}}">View</a>
+                    <a href="/update-companion/{{one_companion.id}}">Edit</a>
                     <a href="/delete/companion/{{one_companion.id}}">Retire</a>
-                    <a href="//update-companion/{{companion.id}}">Edit</a>
-                    <a href="/delete/companion/{{companion.id}}">Retire</a>
-                    <a href="/battle_start/{{companion.id}}">BATTLE!</a> #}
+                    <a href="/battle_start/{{one_companion.id}}">BATTLE!</a>
                 </td>
             </tr>
             {%endfor%}

@@ -73,10 +73,10 @@ class User:
             flash("Email has already been used","register")
             is_valid=False
         if not NAME_REGEX.match(user['first_name']):
-            flash("Invalid First Name","register")
+            flash("First name must be capitalized","register")
             is_valid=False
         if not NAME_REGEX.match(user['last_name']):
-            flash("Invalid Last Name","register")
+            flash("Last name must be capitalized","register")
             is_valid=False
         if not EMAIL_REGEX.match(user['email']):
             flash("Invalid Email Address","register")
