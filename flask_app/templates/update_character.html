@@ -22,6 +22,67 @@
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <h1 class="text-center">Update Character!</h1>
+    <h1 class="text-center">Update Character! {{companion.name}}</h1>
+    <form style="background-color: #60c6ef" class="m-5 col-5 mx-auto"  action="/edit/companion" method="post">
+        <input type="hidden" name="id" value={{edit.id}}>
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" value="{{edit.name}}">
+        </div>
+        <div>
+            <label for="ability1">Ability 1</label>
+            <select id="abilty1" class="select" name="ability1" value="ability1">
+                <option value="{{edit.ability1}}">{{companion.ability1}}</option>
+                <option value="Pee">Pee</option>
+                <option value="Fetch">Fetch</option>
+                <option value="Digging">Digging</option>
+                <option value="Salivia">Salivia</option>
+                <option value="Play Dead">Play Dead</option>
+                <option value="Begging">Begging</option>
+                <option value="Barking">Barking</option>
+                <option value="Pounching">Pounching</option>
+                <option value="Shedding">Shedding</option>
+            </select>
+        </div>
+        <div>
+            <label for="ability2">Ability 2</label>
+            <select id="abilty2" class="select" name="ability2" value="{{edit.ability2}}">
+                <option value="{{edit.ability2}}">{{companion.ability2}}</option>
+                <option value="Pee">Pee</option>
+                <option value="Fetch">Fetch</option>
+                <option value="Digging">Digging</option>
+                <option value="Salivia">Salivia</option>
+                <option value="Play Dead">Play Dead</option>
+                <option value="Begging">Begging</option>
+                <option value="Barking">Barking</option>
+                <option value="Pounching">Pounching</option>
+                <option value="Shedding">Shedding</option>
+            </select>
+        </div>
+        <div>
+            <label for="ability3">Ability 3</label>
+            <select id="abilty3" class="select" name="ability3" value="{{edit.ability3}}">
+                <option value="{{edit.ability3}}">{{companion.ability3}}</option>
+                <option value="Pee">Pee</option>
+                <option value="Fetch">Fetch</option>
+                <option value="Digging">Digging</option>
+                <option value="Salivia">Salivia</option>
+                <option value="Play Dead">Play Dead</option>
+                <option value="Begging">Begging</option>
+                <option value="Barking">Barking</option>
+                <option value="Pounching">Pounching</option>
+                <option value="Shedding">Shedding</option>
+            </select>
+        </div>
+        <div>
+            <label for="picture">Picture of Companion</label>
+            <input type="text" name="picture" value="{{edit.picture}}">
+        </div>
+        <div>
+            <label for="story">Background Story</label>
+            <textarea name="story" cols="30" rows="5">{{edit.story}}</textarea>
+        </div>
+        <button type="submit" value="update_info">Submit</button>
+    </form>
 </body>
 </html>

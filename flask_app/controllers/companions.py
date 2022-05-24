@@ -3,6 +3,7 @@ from flask_app import app
 from flask_app.models.companion import Companion
 from flask_app.models.breed import Breed
 from flask_app.models.profession import Profession
+from flask_app.models.user import User
 from flask_app.models.weapon import Weapon
 
 #Directs the user to the create companion page
@@ -17,13 +18,19 @@ def make_companion():
 
 #Directs the user to the update companion page
 @app.route('/update-companion/<int:id>')
-def update_companion():
+def update_companion(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
+        "id":id
+    }
+    user_data = {
         "id":session['user_id']
     }
-    return render_template('update_character.html')
+    return render_template('update_character.html', 
+                            edit=Companion.get_one(data), 
+                            companion=Companion.get_one(data),
+                            user=User.get_by_id(user_data))
 
 #Process the user's request to create a new companion
 @app.route('/create/companion', methods=['POST'])
@@ -66,7 +73,8 @@ def editCompanion():
         "ability2": request.form["ability2"],
         "ability3": request.form["ability3"],
         "picture": request.form["picture"],
-        "story": request.form["story"]
+        "story": request.form["story"],
+        "id": request.form['id']
     }
     Companion.update_info(data)
     return redirect('/dashboard')
@@ -86,3 +94,18 @@ def retire_companion(id):
 @app.route('/leaderboard')
 def leaderboard():
     return render_template('leaderboard.html', leaderboard=Companion.leaderboard())
+
+#Directs the user to a details page of one of their companions
+@app.route('/companion/<int:id>')
+def one_companion(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        "id":id
+    }
+    user_data = {
+        "id":session['user_id']
+    }
+    return render_template('character_page.html', 
+                        user=User.get_by_id(user_data),
+                        companion = Companion.get_one(data))

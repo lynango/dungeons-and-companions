@@ -51,7 +51,7 @@ def login():
     session['user_id'] = user_with_email.id
     return redirect('/dashboard') 
 
-#Validation checkpoint for logged-in users
+#Validation checkpoint for logged-in users // Renders the Dashboard Page
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
@@ -59,8 +59,9 @@ def dashboard():
     data ={
         'id': session['user_id']    # ->If the user had logged-in, the user is directed to the dashboard page
     }
-    one_user = User.get_one(data)                                                                                                                                              
-    return render_template("dashboard.html", current_user = one_user, companions=Companion.get_all(data))
+    one_user = User.get_one(data)
+    all_companions = Companion.get_all_companions_with_creator()                                                                                                                                              
+    return render_template("dashboard.html", current_user = one_user, all_companions = all_companions)
 
 #Process user's request to logout
 @app.route('/logout')
@@ -68,4 +69,3 @@ def logout():
     session.clear()
     return redirect('/')
 
-    

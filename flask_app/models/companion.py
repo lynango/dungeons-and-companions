@@ -4,6 +4,7 @@ from flask import session
 from flask_app.models.breed import Breed
 from flask_app.models.profession import Profession
 from flask_app.models.weapon import Weapon
+from flask_app.models import user
 
 class Companion:
     db_name = "d&c_database"
@@ -30,6 +31,7 @@ class Companion:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.user_id = data['user_id']
+        self.creator = None
         
     #create character
     @classmethod
@@ -66,14 +68,14 @@ class Companion:
         return companions
 
     #update character information
-    # @classmethod
-    # def update_info(cls, data):
-    #     query = """
-    #     UPDATE companions 
-    #     SET name=%(name)s, picture=%(picture)s, story=%(story)s
-    #     WHERE id=%(id)s
-    #     """
-    #     return connectToMySQL(cls.db_name).query_db(query, data)
+    @classmethod
+    def update_info(cls, data):
+        query = """
+        UPDATE companions 
+        SET name=%(name)s, ability1=%(ability1)s, ability2=%(ability2)s, ability3=%(ability3)s, picture=%(picture)s, story=%(story)s,
+        updated_at=NOW() WHERE id=%(id)s
+        """
+        return connectToMySQL(cls.db_name).query_db(query, data)
     
     #update character stats
     @classmethod
@@ -149,13 +151,23 @@ class Companion:
             one_companion = cls(row)
             user_data = {
                 "id": row['users.id'],
-                "password": row['password'],
                 "first_name": row ['first_name'],
                 "last_name": row ['last_name'],
                 "email": row ['email'],
+                "password": row['password'],
+                "created_at": row['created_at'],
+                "updated_at": row['updated_at']
             }
             author = user.User(user_data)
             # Associate the Message class instance with the User class instance by filling in the empty creator attribute in the Message class
             one_companion.creator = author
             all_companions.append(one_companion)
         return all_companions        
+
+# Retrieve a certain character/companion
+    @classmethod
+    def get_one(cls,data):
+        query = "SELECT * FROM companions WHERE id = %(id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query,data)
+        print(results)
+        return cls(results[0])
