@@ -1,6 +1,7 @@
 from flask import render_template,redirect,session,request, flash
 from flask_app import app
 from flask_app.models.user import User
+from flask_app.models.companion import Companion
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -59,7 +60,7 @@ def dashboard():
         'id': session['user_id']    # ->If the user had logged-in, the user is directed to the dashboard page
     }
     one_user = User.get_one(data)                                                                                                                                              
-    return render_template("dashboard.html", current_user = one_user)
+    return render_template("dashboard.html", current_user = one_user, companions=Companion.get_all(data))
 
 #Process user's request to logout
 @app.route('/logout')

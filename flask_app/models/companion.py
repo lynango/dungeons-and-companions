@@ -44,16 +44,26 @@ class Companion:
     @classmethod
     def get_one(cls, data):
         query = """
-        SELECT * FROM companions WHERE id=%(id)s
+        SELECT * FROM companions WHERE id=%(id)s;
         """
         results = connectToMySQL(cls.db_name).query_db(query, data)
         return cls(results[0])
     
+    @classmethod
+    def get_health(cls, data):
+        query = "Select health from comapnions WHERE id=%(id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        return results
+
     #get all characters of user
     @classmethod
     def get_all(cls, data):
-        query = "SELECT * FROM companions WHERE user_id=%(user_id)s"
-        return connectToMySQL(cls.db_name).query_db(query, data)
+        query = "SELECT * FROM companions WHERE user_id=%(id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        companions = []
+        for companion in results:
+            companions.append(cls(companion))
+        return companions
 
     #update character information
     # @classmethod
