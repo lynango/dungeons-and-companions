@@ -9,6 +9,55 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1 class="text-center">Welcome Fellow Adventure!</h1>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+        <p id="nav-title" style="font-size: 30px;" class="navbar-brand">Dungeons and Companions</p>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a id="nav-title" class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+            <a id="nav-title" class="nav-link active" aria-current="page" href="#">Scoreboard</a>
+            <a id="nav-title" class="nav-link" href="/logout">Logout</a>
+        </div>
+    </nav>
+    <h1 class="text-center">Roll the dice to test your luck at defeating Catzilla</h1>
+    <div>
+        <div>
+            <img src="" alt="companion picture">
+            <h2>Health: {{session['companion_health']}}</h2>
+            <p>Strength: {{session['companion_strength']}}</p>
+            <p>Defense: {{session['companion_defense']}}</p>
+            <p>Luck: {{session['companion_luck']}}</p>
+        </div>
+        <h1>VS.</h1>
+        <div>
+            <img src="" alt="Catzilla">
+            <h2>Health: {{session['boss_health']}}</h2>
+            <p>Strength: {{session['boss_strength']}}</p>
+            <p>Defense: {{session['boss_defense']}}</p>
+            <p>Luck: {{session['boss_luck']}}</p>
+        </div>
+    </div>
+    <div>
+        {% set length = (session['combat_text']|length) %}
+        {%if length < 5%}
+            {% for i in range(0,length)|reverse%}
+            <p>{{session['combat_text'][i]}}</p>
+            {%endfor%}
+        {%else%}
+            {% for i in range(length -6, length -1)| reverse %}
+            <p>{{session['combat_text'][i]}}</p>
+            {% endfor %}
+        {%endif%}
+    </div>
+    <div>
+        {%if session['gg'] == True%}
+        <a href="/end_battle">See Results</a>
+        {%else%}
+        <a href="/roll_dice">Roll The Dice</a>
+        {%endif%}
+    </div>
 </body>
 </html>
