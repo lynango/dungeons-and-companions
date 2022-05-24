@@ -13,7 +13,7 @@ class Battle:
     
     #Dice roll for each turn
     @classmethod
-    def roll_dice(luck=0):
+    def roll_dice(cls, luck=0):
         roll = random.randint(1+luck, 100+luck)
         if roll > 50:
             return True
@@ -22,7 +22,7 @@ class Battle:
         
     #pick random ability
     @classmethod
-    def ability():
+    def skill(cls):
         num = random.randint(1, 3)
         ability = f'ability{num}'
         return ability

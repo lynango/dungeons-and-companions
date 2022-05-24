@@ -52,7 +52,7 @@ def roll_dice():
     companion_luck = session['companion_luck']
     boss_luck = session['boss_luck']
     character = session['companion'].name
-    ability_used = Battle.ability()
+    ability_used = Battle.skill()
     ability_name = session[f'{ability_used}']
     #companion roll
     if Battle.roll_dice(companion_luck):
