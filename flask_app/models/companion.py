@@ -113,7 +113,7 @@ class Companion:
         FROM companions JOIN users ON companions.user_id=users.id 
         GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20;
         """
-        return connectToMySQL(cls.db_name).query_db(query)
+        return connectToMySQL(cls.db_name).query_db(query) 
     
 # Retrieve all messages with creator
     @classmethod
@@ -136,7 +136,7 @@ class Companion:
                 "updated_at": row['updated_at']
             }
             author = user.User(user_data)
-            # Associate the Companion class instance with the User class instance by filling in the empty creator attribute in the Message class
+            # Associate the Companion class instance with the User class instance by filling in the empty creator attribute in the Companion class
             one_companion.creator = author
             all_companions.append(one_companion)
         return all_companions        
