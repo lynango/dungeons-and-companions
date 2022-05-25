@@ -26,15 +26,13 @@
     <table class="table table-striped">
         <tr>
             <th>Picture</th>
-            <th>Picture</th>
-            <th>Companion's Name</th>
+            <th>Name</th>
             <th>Score</th>
         </tr>
         <tbody>
             {%for one_score in scores%}
             <tr>
-                <td><img src="#" alt="Picture of a Companion" width="150" height="150"/></td>
-                <td>{{one_score["picture"]}}</td>
+                <td><img src={{one_score["picture"]}} alt="Picture of a Companion" width="150" height="150"/></td>
                 <td>{{one_score["name"]}}</td>
                 <td>{{one_score["MAX(score)"]}}</td>
             </tr>
