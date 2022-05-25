@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="background" style="background-color: rgba(127,77,48,255);" >
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
         <p id="nav-title" style="font-size: 30px;" class="navbar-brand">Dungeons and Companions</p>
@@ -22,42 +22,38 @@
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <h1 class="text-center">Roll the dice to test your luck at defeating Catzilla</h1>
-    <div>
-        <div>
-            <img src="" alt="companion picture">
-            <h2>Health: {{session['companion_health']}}</h2>
-            <p>Strength: {{session['companion_strength']}}</p>
-            <p>Defense: {{session['companion_defense']}}</p>
-            <p>Luck: {{session['companion_luck']}}</p>
+    <div style="background-color: rgb(220,229,232);" class="col-9 p-4 rounded mx-auto" >
+        <h1 class="text-center ">Roll the dice to test your luck at defeating Catzilla</h1>
+        <div class="d-flex m-4 justify-content-around" >
+            <div>
+                <div id="image"><img src="{{session['companion_img']}}" class="mx-auto rounded" alt="companion picture" style="width:190px;height:250px;" ></div>
+                <h2>Health: {{session['companion_health']}}</h2>
+                <p>Strength: {{session['companion_strength']}}</p>
+                <p>Defense: {{session['companion_defense']}}</p>
+                <p>Luck: {{session['companion_luck']}}</p>
+            </div>
+            <h1 class="m-5">VS.</h1>
+            <div>
+                <div id="image"><img id="catzilla" class="mx-auto rounded float-start" src="/static/catzilla.jpeg" alt="Catzilla" style="width:190px;height:250px;"></div>
+                <h2>Health: {{session['boss_health']}}</h2>
+                <p>Strength: {{session['boss_strength']}}</p>
+                <p>Defense: {{session['boss_defense']}}</p>
+                <p>Luck: {{session['boss_luck']}}</p>
+            </div>
         </div>
-        <h1>VS.</h1>
-        <div>
-            <img src="" alt="Catzilla">
-            <h2>Health: {{session['boss_health']}}</h2>
-            <p>Strength: {{session['boss_strength']}}</p>
-            <p>Defense: {{session['boss_defense']}}</p>
-            <p>Luck: {{session['boss_luck']}}</p>
+        <div style="height:200px;width:700px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;" class="text-center mx-auto" >
+                {% for message in session['combat_text']|reverse%}
+                <p>{{message}}</p>
+                {%endfor%}
         </div>
-    </div>
-    <div>
-        {% set length = (session['combat_text']|length) %}
-        {%if length < 5%}
-            {% for i in range(0,length)|reverse%}
-            <p>{{session['combat_text'][i]}}</p>
-            {%endfor%}
-        {%else%}
-            {% for i in range(length -6, length -1)| reverse %}
-            <p>{{session['combat_text'][i]}}</p>
-            {% endfor %}
-        {%endif%}
-    </div>
-    <div>
-        {%if session['gg'] == True%}
-        <a href="/end_battle">See Results</a>
-        {%else%}
-        <a href="/roll_dice">Roll The Dice</a>
-        {%endif%}
+            <div class="d-flex text-center justify-content-around">
+                {%if session['gg'] == True%}
+                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 btn btn-primary btn-lg" href="/end_battle">See Results</a>
+                {%else%}
+                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 btn btn-primary btn-lg" href="/roll_dice">Roll The Dice</a>
+                {%endif%}
+                <a style="background-color: rgba(224,39,32,255);" type="button" class="m-3 btn btn-primary btn-lg" href="/dashboard">Forfeit!</a>
+            </div>
     </div>
 </body>
 </html>

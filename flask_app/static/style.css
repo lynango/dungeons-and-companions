@@ -43,3 +43,8 @@ body, html {
     font-size: 20px;
     color: white;
 }
+
+#image {
+    width: 200px;
+    height: 250px;
+}
