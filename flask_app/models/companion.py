@@ -113,7 +113,7 @@ class Companion:
         FROM companions JOIN users ON companions.user_id=users.id 
         GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20
         """
-        return connectToMySQL(cls.db).query_db(query)
+        return connectToMySQL(cls.db_name).query_db(query)
     
     #SCRATCH THAT
     # #calculate INITIAL stats from user choices(concept)
