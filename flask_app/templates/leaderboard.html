@@ -23,6 +23,23 @@
         </div>
     </nav>
     <h1 class="text-center">Leaderboard</h1>
-    <h1>hello there</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Picture</th>
+            <th>Picture</th>
+            <th>Companion's Name</th>
+            <th>Score</th>
+        </tr>
+        <tbody>
+            {%for one_score in scores%}
+            <tr>
+                <td><img src="#" alt="Picture of a Companion" width="150" height="150"/></td>
+                <td>{{one_score["picture"]}}</td>
+                <td>{{one_score["name"]}}</td>
+                <td>{{one_score["MAX(score)"]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

@@ -93,22 +93,18 @@ def retire_companion(id):
     Companion.delete(data)
     return redirect('/dashboard')
 
-#leaderboard
+# #leaderboard
 @app.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html')
-
-# #leaderboard
-# @app.route('/leaderboard')
-# def leaderboard():
-#     if 'user_id' not in session:
-#         return redirect('/logout')  
-#     data ={
-#         'id': session['user_id']
-#     }
-#     one_user = User.get_one(data)
-#     all_leaders = Companion.leaderboard()
-#     return render_template('leaderboard.html', current_user = one_user, all_leaders = all_leaders)
+    if 'user_id' not in session:
+        return redirect('/logout')  
+    data ={
+        'id': session['user_id']
+    }
+    all_scores = Companion.leaderboard()
+    print("**********all scores type = ", type(all_scores))
+    print("**********all scores = ", all_scores)
+    return render_template('leaderboard.html', scores = all_scores)
 
 #Directs the user to a details page of one of their companions
 @app.route('/companion/<int:id>')
