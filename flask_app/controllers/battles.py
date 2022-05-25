@@ -34,9 +34,10 @@ def battle_start(id):
     session['combat_text'] = ['Catzilla has arrived! Roll the dice to attack!!']
     session['gg'] = False
     session['score'] = 0
-    if session['boss_defense'] >= session['companion_strength']:
-        flash('This companion is too weak to fight Catzilla!')
-        return redirect('/dashboard') #goes back to character selection
+    # Not needed for current form of game logic
+    # if session['boss_defense'] >= session['companion_strength']:
+    #     flash('This companion is too weak to fight Catzilla!')
+    #     return redirect('/dashboard') #goes back to character selection
     return render_template('battle_page.html') #enter battle page
 
 #battle on-going (Without resetting session)

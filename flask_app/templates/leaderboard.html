@@ -28,13 +28,23 @@
             <th>Picture</th>
             <th>Name</th>
             <th>Score</th>
+            <th>Level</th>
+            <th>Battles Won</th>
+            <th>Battles Lost</th>
+            <th>Last Played On</th>
         </tr>
         <tbody>
             {%for one_score in scores%}
             <tr>
-                <td><img src={{one_score["picture"]}} alt="Picture of a Companion" width="150" height="150"/></td>
+                <td>
+                    <div class="thumbnail"><img src={{one_score["picture"]}} alt="Picture of a Companion" class="companion_thumbnail"/></div>
+                </td>
                 <td>{{one_score["name"]}}</td>
                 <td>{{one_score["MAX(score)"]}}</td>
+                <td>{{one_score["level"]}}</td>
+                <td>{{one_score["win"]}}</td>
+                <td>{{one_score["loss"]}}</td>
+                <td>{{one_score["updated_at"]}}</td>
             </tr>
             {% endfor %}
         </tbody>
