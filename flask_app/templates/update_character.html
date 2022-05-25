@@ -24,6 +24,16 @@
     </nav>
     <h1 class="text-center">Update Character! {{companion.name}}</h1>
     <form style="background-color: #60c6ef" class="m-5 col-5 mx-auto"  action="/edit/companion" method="post">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>Error!</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         <input type="hidden" name="id" value={{edit.id}}>
         <div>
             <label for="name">Name</label>

@@ -24,6 +24,16 @@
     </nav>
     <h1 class="text-center">Create Character!</h1>
     <form style="background-color: #60c6ef" class="m-5 col-5 mx-auto"  action="/create/companion" method="post">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>Error!</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         <div>
             <label for="name">Name</label>
             <input type="text" name="name">
@@ -119,11 +129,12 @@
         </div>
         <div>
             <label for="picture">Picture of Companion</label>
-            <input type="text" name="picture" placeholder="image url">
+            <img src="https://imgur.dcard.tw/5f1GG0th.jpg" alt="default pic" class="character_default_pic">
+            <input type="text" name="picture" placeholder="Post img link here" value="https://imgur.dcard.tw/5f1GG0th.jpg">
         </div>
         <div>
             <label for="story">Background Story</label>
-            <textarea name="story" cols="30" rows="5"></textarea>
+            <textarea name="story" cols="30" rows="5">Born with mighty abilities to vanquish the evil Catzilla. Companion was summoned by many innocent pups whom suffered from Catzillla's attack.</textarea>
         </div>
         <button type="submit" value="companion">Submit</button>
     </form>
