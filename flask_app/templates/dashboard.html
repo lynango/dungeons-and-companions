@@ -16,39 +16,45 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex align-items-center">
+            <a id="nav-title" class="nav-link" href="/create-companion">Create Companion</a>
             <a id="nav-title" class="nav-link active" aria-current="page" href="/leaderboard">Leaderboard</a>
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <h1 class="text-center">Your Companions</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Picture</th>
-                <th>Name</th>
-                <th>Made By</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {%for one_companion in all_companions%}
-            <tr>
-                <td>
-                    <div class="thumbnail"><img src={{one_companion.picture}} alt="Picture of a Companion" class="companion_thumbnail"/></div>
-                </td>
-                <td>{{one_companion.name}}</td>
-                <td>{{one_companion.creator.first_name}}</td>
-                <td>
-                    <a href="/companion/{{one_companion.id}}">View</a>
-                    <a href="/update-companion/{{one_companion.id}}">Edit</a>
-                    <a href="/delete/companion/{{one_companion.id}}">Retire</a>
-                    <a href="/companion/battle_start/{{one_companion.id}}">BATTLE!</a>
-                </td>
-            </tr>
-            {%endfor%}
-        </tbody>
-    </table>
-    <a href="/create-companion">Create Companion</a>
+    <h1 id="text" style="font-size: 30px;" class="text-center">List of Companions</h1>
+    <div class="d-flex justify-content-center">
+        <div class="dashboard-table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Picture</th>
+                        <th>Name</th>
+                        <th>Dungeon Master</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for one_companion in all_companions%}
+                    <tr>
+                        <td>
+                            <div class="thumbnail"><a href="/companion/{{one_companion.id}}"><img src={{one_companion.picture}} alt="Picture of a Companion" class="companion_thumbnail"/></a></div>
+                        </td>
+                        <td>{{one_companion.name}}</td>
+                        <td>{{one_companion.creator.first_name}}</td>
+                        <td>
+                            <a href="/companion/{{one_companion.id}}" class="btn btn-dark">View</a>
+                            {% if one_companion.user_id == session.user_id %}
+                                <a href="/update-companion/{{one_companion.id}}" class="btn btn-dark">Edit</a>
+                                <a href="/delete/companion/{{one_companion.id}}" class="btn btn-dark">Retire</a>
+                            {% endif %}
+                            <a href="/companion/battle_start/{{one_companion.id}}" class="btn btn-dark">BATTLE!</a>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
