@@ -47,6 +47,19 @@ body, html {
     width: 200px;
     height: 250px;
 }
+.thumbnail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width:150px;
+    max-height:150px;
+    min-width: 150px;
+    min-height: 150px;
+}
+.companion_thumbnail {
+    width: 150px;
+    height: 100%;
+}
 .character_default_pic {
     height: 100px;
 }
