@@ -27,6 +27,7 @@ def update_companion(id):
     user_data = {
         "id":session['user_id']
     }
+    session['edit_companion_id'] = id
     return render_template('update_character.html', 
                             edit=Companion.get_one(data), 
                             companion=Companion.get_one(data),
@@ -37,6 +38,8 @@ def update_companion(id):
 def create_companion():
     if 'user_id' not in session:
         return redirect('/logout')
+    if not Companion.validate_create(request.form):
+        return redirect('/create-companion')
     data = {
         "name": request.form["name"],
         "breed": request.form["breed"],
@@ -46,12 +49,7 @@ def create_companion():
         "ability2": request.form["ability2"],
         "ability3": request.form["ability3"],
         "picture": request.form["picture"],
-        "story": request.form["story"],
-        # This section below is still being worked on
-        # "health": 100,
-        # "strength": 9,
-        # "defense": 5,
-        # "luck": 7,      
+        "story": request.form["story"],  
         "health": Breed.get_stats(request.form).health + Profession.get_stats(request.form).health,
         "strength": Breed.get_stats(request.form).strength + Profession.get_stats(request.form).strength + Weapon.get_stats(request.form).strength,
         "defense": Breed.get_stats(request.form).defense + Profession.get_stats(request.form).defense + Weapon.get_stats(request.form).defense,
@@ -67,6 +65,11 @@ def create_companion():
 def editCompanion():
     if 'user_id' not in session:
         return redirect('/logout')
+    if 'edit_companion_id' not in session:
+        return redirect('/dashboard')
+    edit_companion_id = session['edit_companion_id']
+    if not Companion.validate_update(request.form):
+        return redirect(f'/update-companion/{edit_companion_id}')
     data = {
         "name": request.form["name"],
         "ability1": request.form["ability1"],
@@ -93,7 +96,19 @@ def retire_companion(id):
 #leaderboard
 @app.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html', leaderboard=Companion.leaderboard())
+    return render_template('leaderboard.html')
+
+# #leaderboard
+# @app.route('/leaderboard')
+# def leaderboard():
+#     if 'user_id' not in session:
+#         return redirect('/logout')  
+#     data ={
+#         'id': session['user_id']
+#     }
+#     one_user = User.get_one(data)
+#     all_leaders = Companion.leaderboard()
+#     return render_template('leaderboard.html', current_user = one_user, all_leaders = all_leaders)
 
 #Directs the user to a details page of one of their companions
 @app.route('/companion/<int:id>')

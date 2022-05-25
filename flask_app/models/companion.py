@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
-from flask import session
+from flask import session, flash
 from flask_app.models.breed import Breed
 from flask_app.models.profession import Profession
 from flask_app.models.weapon import Weapon
@@ -32,6 +32,7 @@ class Companion:
         self.updated_at = data['updated_at']
         self.user_id = data['user_id']
         self.creator = None
+        # self.leader = None
         
     #create character
     @classmethod
@@ -111,32 +112,27 @@ class Companion:
         query = """
         SELECT MAX(score), companions.name, companions.win, companions.loss, companions.level, companions.updated_at, users.first_name, users.last_name, user_id
         FROM companions JOIN users ON companions.user_id=users.id 
-        GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20
+        GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20;
         """
-        return connectToMySQL(cls.db).query_db(query)
-    
-    #SCRATCH THAT
-    # #calculate INITIAL stats from user choices(concept)
-    # @classmethod
-    # def calc_stat(cls, breed, profession, weapon):
-    #     #assuming breed/profession/weapon data passed in is all in dictionary format
-    #     total_stats = { 
-    #         'id' : session['character_id'], #define in controller
-    #         'health' : Breed.get_stats(breed).health + Profession.get_stats(profession).health + Weapon.get_stats(weapon).health,
-    #         'strength' : Breed.get_stats(breed).strength + Profession.get_stats(profession).strength + Weapon.get_stats(weapon).strength,
-    #         'defense' : Breed.get_stats(breed).defense + Profession.get_stats(profession).defense + Weapon.get_stats(weapon).defense,
-    #         'luck' : Breed.get_stats(breed).luck + Profession.get_stats(profession).luck + Weapon.get_stats(weapon).luck,
-    #         'level' : 1
-    #     }
-    #     Companion.update_stat(total_stats)
-    #     #no return statement required(?)
-        
-    # data = {
-    #     'health' : Breed.get_stats(request.form).health + Profession.get_stats(request.form).health + Weapon.get_stats(request.form).health,
-    #     'strength' : Breed.get_stats(request.form).strength + Profession.get_stats(request.form).strength + Weapon.get_stats(request.form).strength,
-    #     'defense' : Breed.get_stats(request.form).defense + Profession.get_stats(request.form).defense + Weapon.get_stats(request.form).defense,
-    #     'luck' : Breed.get_stats(request.form).luck + Profession.get_stats(request.form).luck + Weapon.get_stats(request.form).luck
-    # }
+        return connectToMySQL(cls.db_name).query_db(query)
+        # all_leaders = []
+        # for row in results:
+        #     one_companion = cls(row)
+        #     user_data = {
+        #         "id": row['users.id'],
+        #         "first_name": row ['first_name'],
+        #         "last_name": row ['last_name'],
+        #         "email": row ['email'],
+        #         "password": row['password'],
+        #         "created_at": row['created_at'],
+        #         "updated_at": row['updated_at']
+        #     }
+        #     author = user.User(user_data)
+        #     # Associate the Message class instance with the User class instance by filling in the empty creator attribute in the Message class
+        #     one_companion.leader = author
+        #     all_companions.append(one_companion)
+        # return all_leaders
+
     
 # Retrieve all messages with creator
     @classmethod
@@ -164,10 +160,38 @@ class Companion:
             all_companions.append(one_companion)
         return all_companions        
 
-# Retrieve a certain character/companion
-    @classmethod
-    def get_one(cls,data):
-        query = "SELECT * FROM companions WHERE id = %(id)s;"
-        results = connectToMySQL(cls.db_name).query_db(query,data)
-        print(results)
-        return cls(results[0])
+    #validate create companion
+    @staticmethod
+    def validate_create(companion):
+        is_valid = True
+        if len(companion['name']) < 2:
+            flash("Name must be at least 2 characters")
+            is_valid= False
+        if companion['breed'] == '0':
+            flash("Please select a breed")
+            is_valid= False
+        if companion['profession'] == '0':
+            flash("Please select a profession")
+            is_valid= False
+        if companion['weapon'] == '0':
+            flash("Please select a weapon")
+            is_valid= False
+        if companion['ability1'] == '0':
+            flash("Please select first ability")
+            is_valid= False
+        if companion['ability2'] == '0':
+            flash("Please select second ability")
+            is_valid= False
+        if companion['ability3'] == '0':
+            flash("Please select third ability")
+            is_valid= False
+        return is_valid
+    
+    #validate update companion
+    @staticmethod
+    def validate_update(companion):
+        is_valid = True
+        if len(companion['name']) < 2:
+            flash("Name must be at least 2 characters")
+            is_valid= False
+        return is_valid
