@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Battle Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg">
+<body class="background" style="background-color: rgba(127,77,48,255);">
+    <nav class="m-2 navbar navbar-expand-lg">
         <div class="container-fluid">
         <p id="nav-title" style="font-size: 30px;" class="navbar-brand">Dungeons and Companions</p>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,6 +22,26 @@
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <h1>Ya defeated the Catzilla!...Maybe?</h1>
+    <div style="background-color: rgb(220,229,232);" class=" m-2 col-4 p-5 rounded mx-auto" >
+        <h1 class="text-center ">Battle Results</h1>
+        <div class="d-flex m-4 justify-content-around" >
+            <div>
+                {%if session['result'] == True%}
+                <div id="image"><img src="{{session['companion_img']}}" class="mx-auto rounded" alt="companion picture" style="width:190px;height:250px;" ></div>
+                {%else%} 
+                <div id="image"><img src="/static/catzilla.jpeg" class="mx-auto rounded" alt="companion picture" style="width:190px;height:250px;" ></div>
+                {%endif%}
+                {%if session['result'] == True%} 
+                <h3 class="text-center">Battle Won!</h3>
+                {%else%}
+                <h3 class="text-center">Battle Lost!</h3>
+                {%endif%}
+                <h2 class="text-center">Score: {{session['score']}}</h2>
+            </div>
+        </div>
+            <div class="d-flex text-center justify-content-around">
+                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 btn btn-primary btn-lg" href="/leaderboard">Leaderboard</a>
+            </div>
+    </div>
 </body>
 </html>
