@@ -23,16 +23,20 @@
     </nav>
     <h1 class="text-center">Your Companions</h1>
     <table class="table table-striped">
-        <tr>
-            <th>Picture</th>
-            <th>Name</th>
-            <th>Made By</th>
-            <th>Actions</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Made By</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
         <tbody>
             {%for one_companion in all_companions%}
             <tr>
-                <td><img src={{one_companion.picture}} alt="Picture of a Companion" width="150" height="150"/></td>
+                <td>
+                    <div class="thumbnail"><img src={{one_companion.picture}} alt="Picture of a Companion" class="companion_thumbnail"/></div>
+                </td>
                 <td>{{one_companion.name}}</td>
                 <td>{{one_companion.creator.first_name}}</td>
                 <td>
