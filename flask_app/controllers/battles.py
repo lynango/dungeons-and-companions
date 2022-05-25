@@ -7,7 +7,7 @@ from flask_app.models.companion import Companion
 
 
 #start battle, store all stats into session 
-@app.route('/battle_start/<int:id>')
+@app.route('/companion/battle_start/<int:id>')
 def battle_start(id):
     session['companion_id'] = id
     data = {

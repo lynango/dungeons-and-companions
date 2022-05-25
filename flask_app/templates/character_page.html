@@ -25,7 +25,7 @@
     <h1 class="text-center">Welcome Fellow Adventure!</h1>
     <p>Name: {{companion.name}}</p>
     <p>Breed: {{companion.breed}}</p>
-    <p>Class: {{companion.class}}</p>
+    <p>Class: {{companion.profession}}</p>
     <p>Weapon: {{companion.weapon}}</p>
     <p>Ability 1: {{companion.ability1}}</p>
     <p>Ability 2: {{companion.ability2}}</p>
@@ -33,9 +33,13 @@
     <p>Picture: {{companion.picture}}</p>
     <p>Story: {{companion.story}}</p>
     <br>
+    <p>Level: {{companion.level}}</p>
+    <p>Score: {{companion.score}}</p>
     <p>Health: {{companion.health}}</p>
     <p>Strength: {{companion.strength}}</p>
     <p>Defense: {{companion.defense}}</p>
     <p>Luck: {{companion.luck}}</p>
+    <br>
+    <a href="battle_start/{{companion.id}}" class="btn btn-primary">Battle!</a>
 </body>
 </html>
