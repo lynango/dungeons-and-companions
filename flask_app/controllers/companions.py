@@ -93,7 +93,7 @@ def retire_companion(id):
     Companion.delete(data)
     return redirect('/dashboard')
 
-# #leaderboard
+#leaderboard
 @app.route('/leaderboard')
 def leaderboard():
     if 'user_id' not in session:
