@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
-from flask import session
+from flask import session, flash
 from flask_app.models.breed import Breed
 from flask_app.models.profession import Profession
 from flask_app.models.weapon import Weapon
@@ -115,29 +115,6 @@ class Companion:
         """
         return connectToMySQL(cls.db_name).query_db(query)
     
-    #SCRATCH THAT
-    # #calculate INITIAL stats from user choices(concept)
-    # @classmethod
-    # def calc_stat(cls, breed, profession, weapon):
-    #     #assuming breed/profession/weapon data passed in is all in dictionary format
-    #     total_stats = { 
-    #         'id' : session['character_id'], #define in controller
-    #         'health' : Breed.get_stats(breed).health + Profession.get_stats(profession).health + Weapon.get_stats(weapon).health,
-    #         'strength' : Breed.get_stats(breed).strength + Profession.get_stats(profession).strength + Weapon.get_stats(weapon).strength,
-    #         'defense' : Breed.get_stats(breed).defense + Profession.get_stats(profession).defense + Weapon.get_stats(weapon).defense,
-    #         'luck' : Breed.get_stats(breed).luck + Profession.get_stats(profession).luck + Weapon.get_stats(weapon).luck,
-    #         'level' : 1
-    #     }
-    #     Companion.update_stat(total_stats)
-    #     #no return statement required(?)
-        
-    # data = {
-    #     'health' : Breed.get_stats(request.form).health + Profession.get_stats(request.form).health + Weapon.get_stats(request.form).health,
-    #     'strength' : Breed.get_stats(request.form).strength + Profession.get_stats(request.form).strength + Weapon.get_stats(request.form).strength,
-    #     'defense' : Breed.get_stats(request.form).defense + Profession.get_stats(request.form).defense + Weapon.get_stats(request.form).defense,
-    #     'luck' : Breed.get_stats(request.form).luck + Profession.get_stats(request.form).luck + Weapon.get_stats(request.form).luck
-    # }
-    
 # Retrieve all messages with creator
     @classmethod
     def get_all_companions_with_creator(cls):
@@ -164,10 +141,38 @@ class Companion:
             all_companions.append(one_companion)
         return all_companions        
 
-# Retrieve a certain character/companion
-    @classmethod
-    def get_one(cls,data):
-        query = "SELECT * FROM companions WHERE id = %(id)s;"
-        results = connectToMySQL(cls.db_name).query_db(query,data)
-        print(results)
-        return cls(results[0])
+    #validate create companion
+    @staticmethod
+    def validate_create(companion):
+        is_valid = True
+        if len(companion['name']) < 2:
+            flash("Name must be at least 2 characters")
+            is_valid= False
+        if companion['breed'] == '0':
+            flash("Please select a breed")
+            is_valid= False
+        if companion['profession'] == '0':
+            flash("Please select a profession")
+            is_valid= False
+        if companion['weapon'] == '0':
+            flash("Please select a weapon")
+            is_valid= False
+        if companion['ability1'] == '0':
+            flash("Please select first ability")
+            is_valid= False
+        if companion['ability2'] == '0':
+            flash("Please select second ability")
+            is_valid= False
+        if companion['ability3'] == '0':
+            flash("Please select third ability")
+            is_valid= False
+        return is_valid
+    
+    #validate update companion
+    @staticmethod
+    def validate_update(companion):
+        is_valid = True
+        if len(companion['name']) < 2:
+            flash("Name must be at least 2 characters")
+            is_valid= False
+        return is_valid
