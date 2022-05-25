@@ -32,7 +32,6 @@ class Companion:
         self.updated_at = data['updated_at']
         self.user_id = data['user_id']
         self.creator = None
-        # self.leader = None
         
     #create character
     @classmethod
@@ -110,29 +109,11 @@ class Companion:
     @classmethod
     def leaderboard(cls):
         query = """
-        SELECT MAX(score), companions.name, companions.win, companions.loss, companions.level, companions.updated_at, users.first_name, users.last_name, user_id
+        SELECT MAX(score), companions.name, companions.picture, companions.win, companions.loss, companions.level, companions.updated_at, users.first_name, users.last_name, user_id
         FROM companions JOIN users ON companions.user_id=users.id 
         GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20;
         """
         return connectToMySQL(cls.db_name).query_db(query)
-        # all_leaders = []
-        # for row in results:
-        #     one_companion = cls(row)
-        #     user_data = {
-        #         "id": row['users.id'],
-        #         "first_name": row ['first_name'],
-        #         "last_name": row ['last_name'],
-        #         "email": row ['email'],
-        #         "password": row['password'],
-        #         "created_at": row['created_at'],
-        #         "updated_at": row['updated_at']
-        #     }
-        #     author = user.User(user_data)
-        #     # Associate the Message class instance with the User class instance by filling in the empty creator attribute in the Message class
-        #     one_companion.leader = author
-        #     all_companions.append(one_companion)
-        # return all_leaders
-
     
 # Retrieve all messages with creator
     @classmethod
@@ -155,7 +136,7 @@ class Companion:
                 "updated_at": row['updated_at']
             }
             author = user.User(user_data)
-            # Associate the Message class instance with the User class instance by filling in the empty creator attribute in the Message class
+            # Associate the Companion class instance with the User class instance by filling in the empty creator attribute in the Message class
             one_companion.creator = author
             all_companions.append(one_companion)
         return all_companions        
