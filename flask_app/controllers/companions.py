@@ -96,7 +96,19 @@ def retire_companion(id):
 #leaderboard
 @app.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html', leaderboard=Companion.leaderboard())
+    return render_template('leaderboard.html')
+
+# #leaderboard
+# @app.route('/leaderboard')
+# def leaderboard():
+#     if 'user_id' not in session:
+#         return redirect('/logout')  
+#     data ={
+#         'id': session['user_id']
+#     }
+#     one_user = User.get_one(data)
+#     all_leaders = Companion.leaderboard()
+#     return render_template('leaderboard.html', current_user = one_user, all_leaders = all_leaders)
 
 #Directs the user to a details page of one of their companions
 @app.route('/companion/<int:id>')
