@@ -20,7 +20,7 @@ def battle_start(id):
         session.pop('combat_text')
     session['boss_health'] = 100
     session['boss_strength'] = 10
-    session['boss_defense'] = 3
+    session['boss_defense'] = 5
     session['boss_luck'] = 0
     session['companion_max_health'] = companion.health
     session['companion_img'] = companion.picture
@@ -110,7 +110,7 @@ def end():
     #level up stat update
     data['health'] = session['level_gain'] * 3
     data['strength'] = session['level_gain'] * 1
-    data['defense'] = 0
-    data['luck'] = 0
+    data['defense'] = session['level_gain'] * 1
+    data['luck'] = session['level_gain'] * 2
     Companion.update_stat(data)
     return render_template('battle_result.html') #result page
