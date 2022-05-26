@@ -43,7 +43,7 @@ def battle_start(id):
 #battle on-going (Without resetting session)
 @app.route('/ongoing')
 def battle_ongoing():
-    return render_template('battle_page.html') #battle page
+    return render_template('battle_ongoing.html') #battle page
 
 #roll the dice
 @app.route('/roll_dice')

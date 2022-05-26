@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="background" style="background-color: rgba(127,77,48,255);" >
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <p id="nav-title" style="font-size: 30px;" class="navbar-brand">Dungeons and Companions</p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a id="nav-title" class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+            <a id="nav-title" class="nav-link active" aria-current="page" href="/leaderboard">Leaderboard</a>
+            <a id="nav-title" class="nav-link" href="/logout">Logout</a>
+        </div>
+    </nav>
+    <div class="col-9 p-4 rounded mx-auto" >
+        <h1 id="text" class="text-center" style="font-size: 24px;">Roll the dice to test your luck at defeating Catzilla</h1>
+        <div class="d-flex justify-content-center m-4" >
+            <div class="d-flex align-items-center battle-stats mr-5 mt-5 battlel">
+                <ul style="list-style-type:none; font-size: 20px; font-weight: bold;" class="pr-5">
+                    <li>Strength: {{session['companion_strength']}}</li>
+                    <li>Defense: {{session['companion_defense']}}</li>
+                    <li>Luck: {{session['companion_luck']}}</li>
+                </ul> 
+            </div>
+            <div style="width: 21%;">
+                <img src="{{session['companion_img']}}" id="image" class="d-flex mx-auto rounded box" alt="companion picture" style="width:190px;height:250px;" >
+                <h2 class="health text-center pt-2 battlel">Health: {{session['companion_health']}}</h2>
+            </div>
+            <div><h1 id="text" class="m-5 boxtwo">VS.</h1></div>
+            <div style="width: 21%;">
+                <img id="catzilla" id="image" class="d-flex mx-auto rounded boxthree" src="/static/catzilla.jpeg" alt="Catzilla" style="width:190px;height:250px;">
+                <h2 class="health text-center pt-2 battler">Health: {{session['boss_health']}}</h2>
+            </div>
+            <div class="d-flex align-items-center battle-stats ml-5 mt-5 battler">
+                <ul style="list-style-type:none; font-size: 20px; font-weight: bold;" class="pr-5">
+                    <li>Strength: {{session['boss_strength']}}</li>
+                    <li>Defense: {{session['boss_defense']}}</li>
+                    <li>Luck: {{session['boss_luck']}}</li>
+                </ul> 
+            </div>
+        </div>
+        <div id="combat-text" style="height:200px;width:700px;border:1px solid;overflow:auto;" class="text-center mx-auto rounded p-2 battlel" >
+                {% for message in session['combat_text']|reverse%}
+                    {% if loop.revindex0 % 2 == 0 %}
+                        <p style="color: red">{{message}}</p>
+                    {% else %}
+                        <p style="color: blue">{{message}}</p>
+                        <hr>
+                    {% endif %}
+                {%endfor%}
+        </div>
+            <div class="d-flex text-center justify-content-around">
+                {%if session['gg'] == True%}
+                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 mt-4 btn btn-primary btn-lg" href="/end_battle">See Results</a>
+                {%else%}
+                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 mt-4 btn btn-primary btn-lg battlel" href="/roll_dice">Roll The Dice</a>
+                {%endif%}
+                <a  style="background-color: rgba(224,39,32,255);" type="button" class="m-3 mt-4 btn btn-primary btn-lg battler" href="/dashboard">Forfeit!</a>
+            </div>
+    </div>
+</body>
+</html>
