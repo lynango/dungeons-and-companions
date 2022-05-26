@@ -25,12 +25,12 @@
     <h1 id="text" style="font-size: 30px;" class="text-center">List of Companions</h1>
     <div class="d-flex justify-content-center">
         <div class="dashboard-table">
-            <table class="table table-striped">
+            <table class="table table-hover table-striped">
                 <thead>
                     <tr>
                         <th>Picture</th>
                         <th>Name</th>
-                        <th>Dungeon Master</th>
+                        <th>Class</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -41,13 +41,11 @@
                             <div class="thumbnail"><a href="/companion/{{one_companion.id}}"><img src={{one_companion.picture}} alt="Picture of a Companion" class="companion_thumbnail"/></a></div>
                         </td>
                         <td>{{one_companion.name}}</td>
-                        <td>{{one_companion.creator.first_name}}</td>
+                        <td>{{one_companion.profession}}</td>
                         <td>
                             <a href="/companion/{{one_companion.id}}" class="btn btn-dark">View</a>
-                            {% if one_companion.user_id == session.user_id %}
                                 <a href="/update-companion/{{one_companion.id}}" class="btn btn-dark">Edit</a>
                                 <a href="/delete/companion/{{one_companion.id}}" class="btn btn-dark">Retire</a>
-                            {% endif %}
                             <a href="/companion/battle_start/{{one_companion.id}}" class="btn btn-dark">BATTLE!</a>
                         </td>
                     </tr>
