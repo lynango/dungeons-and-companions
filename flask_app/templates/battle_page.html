@@ -92,10 +92,10 @@
 <body class="background" style="background-color: rgba(127,77,48,255);" >
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-        <p id="nav-title" style="font-size: 30px;" class="navbar-brand">Dungeons and Companions</p>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <p id="nav-title" style="font-size: 30px;" class="navbar-brand">Dungeons and Companions</p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
         <div class="d-flex justify-content-end">
             <a id="nav-title" class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
@@ -103,30 +103,26 @@
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <div style="background-color: rgb(220,229,232);" class="col-9 p-4 rounded mx-auto" >
-        <h1 id="text" class="text-center battler" style="font-size: 24px;">Roll the dice to test your luck at defeating Catzilla</h1>
-        <div class="d-flex justify-content-center m-4" >
-            <div class="d-flex align-items-center battle-stats mr-5 battlel">
     <div class="col-9 p-4 rounded mx-auto" >
         <h1 id="text" class="text-center" style="font-size: 24px;">Roll the dice to test your luck at defeating Catzilla</h1>
         <div class="d-flex justify-content-center m-4" >
-            <div class="d-flex align-items-center battle-stats mr-5 mt-5">
+            <div class="d-flex align-items-center battle-stats mr-5 mt-5 battlel">
                 <ul style="list-style-type:none; font-size: 20px; font-weight: bold;" class="pr-5">
                     <li>Strength: {{session['companion_strength']}}</li>
                     <li>Defense: {{session['companion_defense']}}</li>
                     <li>Luck: {{session['companion_luck']}}</li>
                 </ul> 
             </div>
-            <div>
-                    <img src="{{session['companion_img']}}" id="image" class="mx-auto rounded box" alt="companion picture" style="width:190px;height:250px;" >
-                    <h2 class="text-center pt-2 battlel">Health: {{session['companion_health']}}</h2>
+            <div style="width: 21%;">
+                <img src="{{session['companion_img']}}" id="image" class="d-flex mx-auto rounded box" alt="companion picture" style="width:190px;height:250px;" >
+                <h2 class="health text-center pt-2 battlel">Health: {{session['companion_health']}}</h2>
             </div>
-            <div><h1 class="m-5 boxtwo">VS.</h1></div>
-            <div>
-                <img id="catzilla" id="image" class="mx-auto rounded float-start boxthree" src="/static/catzilla.jpeg" alt="Catzilla" style="width:190px;height:250px;">
-                <h2 class="text-center pt-2 battler">Health: {{session['boss_health']}}</h2>
+            <div><h1 id="text" class="m-5 boxtwo">VS.</h1></div>
+            <div style="width: 21%;">
+                <img id="catzilla" id="image" class="d-flex mx-auto rounded boxthree" src="/static/catzilla.jpeg" alt="Catzilla" style="width:190px;height:250px;">
+                <h2 class="health text-center pt-2 battler">Health: {{session['boss_health']}}</h2>
             </div>
-            <div class="d-flex align-items-center battle-stats ml-5 battler">
+            <div class="d-flex align-items-center battle-stats ml-5 mt-5 battler">
                 <ul style="list-style-type:none; font-size: 20px; font-weight: bold;" class="pr-5">
                     <li>Strength: {{session['boss_strength']}}</li>
                     <li>Defense: {{session['boss_defense']}}</li>
@@ -146,11 +142,11 @@
         </div>
             <div class="d-flex text-center justify-content-around">
                 {%if session['gg'] == True%}
-                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 btn btn-primary btn-lg mt-4" href="/end_battle">See Results</a>
+                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 mt-4 btn btn-primary btn-lg" href="/end_battle">See Results</a>
                 {%else%}
-                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 btn btn-primary btn-lg battlel" href="/roll_dice">Roll The Dice</a>
+                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 mt-4 btn btn-primary btn-lg battlel" href="/roll_dice">Roll The Dice</a>
                 {%endif%}
-                <a  style="background-color: rgba(224,39,32,255);" type="button" class="m-3 btn btn-primary btn-lg battler" href="/dashboard">Forfeit!</a>
+                <a  style="background-color: rgba(224,39,32,255);" type="button" class="m-3 mt-4 btn btn-primary btn-lg battler" href="/dashboard">Forfeit!</a>
             </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
