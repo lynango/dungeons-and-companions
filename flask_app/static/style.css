@@ -124,6 +124,15 @@ body, html {
     height: auto;
     padding: 5%;
 }
+.column_center {
+    width: 30%;
+    height: auto;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .top-left {
     background-color: rgb(220,229,232);
     padding: 5%;
@@ -167,34 +176,33 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width:100%;
+    max-width:80%;
     max-height: auto;
-    min-width: 100%;
+    min-width: 80%;
     min-height: auto;
+    margin-top: -20px;
+    z-index: -1;
 }
 .companion-pic2 {
     width: 100%;
     height: 100%;
 }
-#text-name {
+.text-name {
     font-family: 'Press Start 2P';
     padding: 1% 3% 1% 3%;
+    width: auto;
     background-color: #1F4045;
-    position: absolute;
-    top: 12%;
-    left: 42%;
     border-radius: 25px;
     border: 5px solid white;
+    font-size: 3vw;
 }
-#text-profession {
+.text-profession {
     font-family: 'Press Start 2P';
     padding: 1% 3% 1% 3%;
-    margin: 2%;
+    width: auto;
     background-color: #1F4045;
-    position: relative;
-    top: 0%;
-    left: 0%;
     border-radius: 25px;
     border: 5px solid white;
+    font-size: 2vw;
 }
 /* End of View Companion Page CSS Codes */
