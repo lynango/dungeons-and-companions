@@ -22,27 +22,27 @@
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <h1 id="text" style="font-size: 30px;" class="text-center">List of Companions</h1>
+    <h1 id="text" class="text-center pixel_font">List of Companions</h1>
     <div class="d-flex justify-content-center">
-        <div class="dashboard-table">
-            <table class="table table-hover table-striped">
-                <thead>
+        <div class="dashboard-table table-responsive text-center">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark">
                     <tr>
                         <th>Picture</th>
                         <th>Name</th>
                         <th>Class</th>
-                        <th>Actions</th>
+                        <th class="dash_action">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {%for one_companion in all_companions%}
-                    <tr>
-                        <td>
-                            <div class="thumbnail"><a href="/companion/{{one_companion.id}}"><img src={{one_companion.picture}} alt="Picture of a Companion" class="companion_thumbnail"/></a></div>
+                    <tr class="cursive_font">
+                        <td class="thumb_column">
+                            <div class="thumbnail"><a href="/companion/{{one_companion.id}}"><img src={{one_companion.picture}} alt="Picture of a Companion" class="companion_thumbnail thumbnail_border"/></a></div>
                         </td>
-                        <td>{{one_companion.name}}</td>
-                        <td>{{one_companion.profession}}</td>
-                        <td>
+                        <td class="align-middle">{{one_companion.name}}</td>
+                        <td class="align-middle">{{one_companion.profession}}</td>
+                        <td class="align-middle dash_action">
                             <a href="/companion/{{one_companion.id}}" class="btn btn-dark">View</a>
                                 <a href="/update-companion/{{one_companion.id}}" class="btn btn-dark">Edit</a>
                                 <a href="/delete/companion/{{one_companion.id}}" class="btn btn-dark">Retire</a>
