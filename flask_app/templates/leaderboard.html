@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scoreboard</title>
+    <title>Character</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
@@ -18,9 +18,36 @@
         </div>
         <div class="d-flex justify-content-end">
             <a id="nav-title" class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+            <a id="nav-title" class="nav-link active" aria-current="page" href="/leaderboard">Leaderboard</a>
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <h1 class="text-center">Welcome Fellow Adventure!</h1>
+    <h1 class="text-center">Leaderboard</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Level</th>
+            <th>Battles Won</th>
+            <th>Battles Lost</th>
+            <th>Last Played On</th>
+        </tr>
+        <tbody>
+            {%for one_score in scores%}
+            <tr>
+                <td>
+                    <div class="thumbnail"><img src={{one_score["picture"]}} alt="Picture of a Companion" class="companion_thumbnail"/></div>
+                </td>
+                <td>{{one_score["name"]}}</td>
+                <td>{{one_score["MAX(score)"]}}</td>
+                <td>{{one_score["level"]}}</td>
+                <td>{{one_score["win"]}}</td>
+                <td>{{one_score["loss"]}}</td>
+                <td>{{one_score["updated_at"]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

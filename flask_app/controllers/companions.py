@@ -3,6 +3,7 @@ from flask_app import app
 from flask_app.models.companion import Companion
 from flask_app.models.breed import Breed
 from flask_app.models.profession import Profession
+from flask_app.models.user import User
 from flask_app.models.weapon import Weapon
 
 #Directs the user to the create companion page
@@ -16,20 +17,29 @@ def make_companion():
     return render_template('create_character.html')
 
 #Directs the user to the update companion page
-@app.route('/update-companion')
-def update_companion():
+@app.route('/update-companion/<int:id>')
+def update_companion(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
+        "id":id
+    }
+    user_data = {
         "id":session['user_id']
     }
-    return render_template('update_character.html')
+    session['edit_companion_id'] = id
+    return render_template('update_character.html', 
+                            edit=Companion.get_one(data), 
+                            companion=Companion.get_one(data),
+                            user=User.get_by_id(user_data))
 
 #Process the user's request to create a new companion
 @app.route('/create/companion', methods=['POST'])
 def create_companion():
     if 'user_id' not in session:
         return redirect('/logout')
+    if not Companion.validate_create(request.form):
+        return redirect('/create-companion')
     data = {
         "name": request.form["name"],
         "breed": request.form["breed"],
@@ -39,16 +49,11 @@ def create_companion():
         "ability2": request.form["ability2"],
         "ability3": request.form["ability3"],
         "picture": request.form["picture"],
-        "story": request.form["story"],
-        # This section below is still being worked on
-        "health": 10,
-        "strength": 9,
-        "defense": 5,
-        "luck": 7,      
-        # "health": Breed.get_stats(request.form).health + Profession.get_stats(request.form).health + Weapon.get_stats(request.form).health,
-        # "strength": Breed.get_stats(request.form).strength + Profession.get_stats(request.form).strength + Weapon.get_stats(request.form).strength,
-        # "defense": Breed.get_stats(request.form).defense + Profession.get_stats(request.form).defense + Weapon.get_stats(request.form).defense,
-        # "luck": Breed.get_stats(request.form).luck + Profession.get_stats(request.form).luck + Weapon.get_stats(request.form).luck,
+        "story": request.form["story"],  
+        "health": Breed.get_stats(request.form).health + Profession.get_stats(request.form).health,
+        "strength": Breed.get_stats(request.form).strength + Profession.get_stats(request.form).strength + Weapon.get_stats(request.form).strength,
+        "defense": Breed.get_stats(request.form).defense + Profession.get_stats(request.form).defense + Weapon.get_stats(request.form).defense,
+        "luck": Breed.get_stats(request.form).luck + Profession.get_stats(request.form).luck + Weapon.get_stats(request.form).luck,
         "user_id": session["user_id"]
     }
     Companion.create(data)
@@ -60,13 +65,19 @@ def create_companion():
 def editCompanion():
     if 'user_id' not in session:
         return redirect('/logout')
+    if 'edit_companion_id' not in session:
+        return redirect('/dashboard')
+    edit_companion_id = session['edit_companion_id']
+    if not Companion.validate_update(request.form):
+        return redirect(f'/update-companion/{edit_companion_id}')
     data = {
         "name": request.form["name"],
         "ability1": request.form["ability1"],
         "ability2": request.form["ability2"],
         "ability3": request.form["ability3"],
         "picture": request.form["picture"],
-        "story": request.form["story"]
+        "story": request.form["story"],
+        "id": request.form['id']
     }
     Companion.update_info(data)
     return redirect('/dashboard')
@@ -85,4 +96,27 @@ def retire_companion(id):
 #leaderboard
 @app.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html', leaderboard=Companion.leaderboard())
+    if 'user_id' not in session:
+        return redirect('/logout')  
+    data ={
+        'id': session['user_id']
+    }
+    all_scores = Companion.leaderboard()
+    print("**********all scores type = ", type(all_scores))
+    print("**********all scores = ", all_scores)
+    return render_template('leaderboard.html', scores = all_scores)
+
+#Directs the user to a details page of one of their companions
+@app.route('/companion/<int:id>')
+def one_companion(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        "id":id
+    }
+    user_data = {
+        "id":session['user_id']
+    }
+    return render_template('character_page.html', 
+                        user=User.get_by_id(user_data),
+                        companion = Companion.get_one(data))

@@ -43,3 +43,112 @@ body, html {
     font-size: 20px;
     color: white;
 }
+#image {
+    width: 200px;
+    height: 250px;
+}
+.thumbnail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width:150px;
+    max-height:150px;
+    min-width: 150px;
+    min-height: 150px;
+    background-color: black;
+}
+.companion_thumbnail {
+    width: 150px;
+    height: 100%;
+}
+.character_default_pic {
+    height: 100px;
+}
+.dashboard-table {
+    width: 50%;
+    background-color: rgb(220,229,232);
+}
+/* Start of View Companion Page CSS Codes */
+.character-page {
+    display: flex;
+    justify-content: space-evenly;
+}
+.column {
+    width: 30%;
+    height: auto;
+    padding: 5%;
+}
+.top-left {
+    background-color: rgb(220,229,232);
+    padding: 5%;
+    margin-bottom: 40px;
+    border: 5px dashed silver;
+    border-radius: 25px;
+}
+.top-right {
+    width:150px;
+    height: 150px;
+    margin-bottom: 40px;
+    position: relative;
+    top: 0%;
+    left: 15%;
+}
+.circle {
+    background: #F49C75;
+    width: 150px;
+    height: 150px;
+    padding: 10%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+.left-bottom {
+    background-color: rgb(220,229,232);
+    padding: 10%;
+    border: 5px dashed silver;
+    border-radius: 25px;
+}
+.right-bottom {
+    width: 250px;
+    background-color: rgb(220,229,232);
+    padding: 10%;
+    border: 5px dashed silver;
+    border-radius: 25px;
+}
+.companion-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width:100%;
+    max-height: auto;
+    min-width: 100%;
+    min-height: auto;
+}
+.companion-pic2 {
+    width: 100%;
+    height: auto;
+}
+#text-name {
+    font-family: 'Press Start 2P';
+    padding: 1% 3% 1% 3%;
+    background-color: #1F4045;
+    position: absolute;
+    top: 12%;
+    left: 42%;
+    border-radius: 25px;
+    border: 5px solid white;
+}
+#text-profession {
+    font-family: 'Press Start 2P';
+    padding: 1% 3% 1% 3%;
+    margin: 2%;
+    background-color: #1F4045;
+    position: relative;
+    top: 0%;
+    left: 0%;
+    border-radius: 25px;
+    border: 5px solid white;
+}
+/* End of View Companion Page CSS Codes */

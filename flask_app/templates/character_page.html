@@ -18,10 +18,48 @@
         </div>
         <div class="d-flex justify-content-end">
             <a id="nav-title" class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
-            <a id="nav-title" class="nav-link active" aria-current="page" href="#">Scoreboard</a>
+            <a id="nav-title" class="nav-link active" aria-current="page" href="/leaderboard">Leaderboard</a>
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <h1 class="text-center">Welcome Fellow Adventure!</h1>
+    <div class="character-page">
+        <div class="column">
+            <div class="top-left">
+                <h4>Favorite: Weapon: {{companion.weapon}}</h4>
+                <h4>Abilities:</h4>
+                    <ul style="list-style-type:none; font-size: 20px; font-weight: bold;">
+                        <li>{{companion.ability1}}</li>
+                        <li>{{companion.ability2}}</li>
+                        <li>{{companion.ability3}}</li>
+                    </ul>  
+            </div>
+            <div class="left-bottom">
+                <h4>About {{companion.name}}:
+                    <br> 
+                    <br>
+                    {{companion.story}}</h4>
+            </div>
+        </div>
+
+        <div class="column">
+            <div><h1 id="text-name" class="text-center text-light text-uppercase" style="font-size:2vw;">{{companion.name}}</h1></div>
+            <div class="companion-pic"><img class="companion-pic2 rounded-circle" src={{companion.picture}} alt="Picture of a Companion"/></div>
+            <div><h1 id="text-profession" class="text-center text-light text-uppercase" style="font-size:2vw;">THE {{companion.profession}}</h1></div>
+            <div class="d-flex justify-content-center mt-5"><a href="battle_start/{{companion.id}}" class="btn btn-primary btn-outline-light p-3">Send your Companion into the Boss Room!</a></div>
+        </div>
+
+        <div class="column">
+            <div class="top-right">
+                <h1 class="circle">Level {{companion.level}}</h1>
+            </div>
+            <div class="right-bottom">
+                <h4>Score: {{companion.score}}</h4>
+                <h4>Health: {{companion.health}}</h4>
+                <h4>Strength: {{companion.strength}}</h4>
+                <h4>Defense: {{companion.defense}}</h4>
+                <h4>Luck: {{companion.luck}}</h4>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

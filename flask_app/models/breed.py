@@ -6,7 +6,7 @@ class Breed:
 
     def __init__(self, data):
         self.id = data['id']
-        self.name = data['breed']
+        self.name = data['name']
         self.health = data['health']
         self.strength = data['strength']
         self.defense = data['defense']
