@@ -22,7 +22,7 @@
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <div style="background-color: rgb(220,229,232);" class="col-9 p-4 rounded mx-auto" >
+    <div class="col-9 p-4 rounded mx-auto" >
         <h1 id="text" class="text-center" style="font-size: 24px;">Roll the dice to test your luck at defeating Catzilla</h1>
         <div class="d-flex justify-content-center m-4" >
             <div class="d-flex align-items-center battle-stats mr-5">
@@ -65,7 +65,7 @@
                 {%else%}
                 <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 btn btn-primary btn-lg" href="/roll_dice">Roll The Dice</a>
                 {%endif%}
-                <a onmouseover="over(this)" onmouseout="out(this)" style="background-color: rgba(224,39,32,255);" type="button" class="m-3 btn btn-primary btn-lg" href="/dashboard">Forfeit!</a>
+                <a style="background-color: rgba(224,39,32,255);" type="button" class="m-3 btn btn-primary btn-lg" href="/dashboard">Forfeit!</a>
             </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
