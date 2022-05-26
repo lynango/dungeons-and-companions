@@ -41,12 +41,14 @@
                 <p>Luck: {{session['boss_luck']}}</p>
             </div>
         </div>
-        <div style="height:200px;width:700px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;" class="text-center mx-auto" >
+        <div id="combat-text" style="height:200px;width:700px;border:1px solid;overflow:auto;" class="text-center mx-auto rounded p-2" >
                 {% for message in session['combat_text']|reverse%}
                     {% if loop.revindex0 % 2 == 0 %}
+
                         <p style="color: red">{{message}}</p>
                     {% else %}
                         <p style="color: blue">{{message}}</p>
+                        <hr>
                     {% endif %}
                 {%endfor%}
         </div>
