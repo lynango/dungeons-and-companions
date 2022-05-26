@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="background">
+<body class="background" style="background-color: rgba(127,77,48,255);">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
         <p id="nav-title" style="font-size: 30px;" class="navbar-brand">Dungeons and Companions</p>
@@ -22,8 +22,8 @@
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <h1 class="text-center">Create Character!</h1>
-    <form style="background-color: #60c6ef" class="m-5 col-5 mx-auto"  action="/create/companion" method="post">
+    <form style="background-color: #60c6ef" class="m-1 col-7 mx-auto p-3 rounded"  action="/create/companion" method="post">
+        <h2  class="m-4 text-center pixel">Create Character</h2>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <div class="alert alert-danger" role="alert">
@@ -34,109 +34,119 @@
                 </div>
             {% endif %}
         {% endwith %}
-        <div>
+        <div class="m-4 form-group">
             <label for="name">Name</label>
-            <input type="text" name="name">
+            <input type="text" name="name" class="form-control">
         </div>
-        <div>
-            <label for="breed">Breed</label>
-            <select id="breed" class="select" name="breed">
-                <option value="0">Choose a Breed:</option>
-                <option value="Golden Retriever">Golden Retriever</option>
-                <option value="Pomeranian">Pomeranian</option>
-                <option value="Cocker Spaniel">Cocker Spaniel</option>
-                <option value="Chihuahua">Chihuahua</option>
-                <option value="Great Dane">Great Dane</option>
-                <option value="French Bulldog">French Bulldog</option>
-                <option value="Schnauzer">Schnauzer</option>
-                <option value="Husky">Husky</option>
-                <option value="Shiba Inu">Shiba Inu</option>
-                <option value="Rottweiler">Rottweiler</option>
-                <option value="Corgi">Corgi</option>
-            </select>
+        <div class=" d-flex justify-content-between mr-4 ml-4">
+            <div>
+                <div class="form-group">
+                    <label for="breed">Breed&nbsp&nbsp&nbsp&nbsp</label>
+                    <select style="background-color: #246473; color: white" id="breed" class="select" name="breed">
+                        <option value="0">Choose a Breed:</option>
+                        <option value="Golden Retriever">Golden Retriever</option>
+                        <option value="Pomeranian">Pomeranian</option>
+                        <option value="Cocker Spaniel">Cocker Spaniel</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Great Dane">Great Dane</option>
+                        <option value="French Bulldog">French Bulldog</option>
+                        <option value="Schnauzer">Schnauzer</option>
+                        <option value="Husky">Husky</option>
+                        <option value="Shiba Inu">Shiba Inu</option>
+                        <option value="Rottweiler">Rottweiler</option>
+                        <option value="Corgi">Corgi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="profession">Class&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                    <select style="background-color: #246473; color: white" id="profession" class="select" name="profession">
+                        <option value="0">Choose a Class:</option>
+                        <option value="Wizard">Wizard</option>
+                        <option value="Warrior">Warrior</option>
+                        <option value="Archer">Archer</option>
+                        <option value="Paladin">Paladin</option>
+                        <option value="Priest">Priest</option>
+                        <option value="Shifter">Shifter</option>
+                        <option value="Bard">Bard</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="weapon">Weapon</label>
+                    <select style="background-color: #246473; color: white;" id="weapon" class="select" name="weapon">
+                        <option value="0">Choose a Weapon:</option>
+                        <option value="Sword">Sword</option>
+                        <option value="Wand">Wand</option>
+                        <option value="Stick">Stick</option>
+                        <option value="Bow">Bow</option>
+                        <option value="Ball">Ball</option>
+                        <option value="ChewToy">Chew Toy</option>
+                        <option value="Mandolin">Mandolin</option>
+                        <option value="Shield">Shield</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="ability1">Ability 1</label>
+                    <select id="abilty1" class="select" name="ability1">
+                        <option value="0">Choose an Ability:</option>
+                        <option value="Pee">Pee</option>
+                        <option value="Fetch">Fetch</option>
+                        <option value="Digging">Digging</option>
+                        <option value="Saliva">Saliva</option>
+                        <option value="Play Dead">Play Dead</option>
+                        <option value="Begging">Begging</option>
+                        <option value="Barking">Barking</option>
+                        <option value="Pouncing">Pouncing</option>
+                        <option value="Shedding">Shedding</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ability2">Ability 2</label>
+                    <select id="abilty2" class="select" name="ability2">
+                        <option value="0">Choose an Ability:</option>
+                        <option value="Pee">Pee</option>
+                        <option value="Fetch">Fetch</option>
+                        <option value="Digging">Digging</option>
+                        <option value="Saliva">Saliva</option>
+                        <option value="Play Dead">Play Dead</option>
+                        <option value="Begging">Begging</option>
+                        <option value="Barking">Barking</option>
+                        <option value="Pouncing">Pouncing</option>
+                        <option value="Shedding">Shedding</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ability3">Ability 3</label>
+                    <select id="abilty3" class="select" name="ability3">
+                        <option value="0">Choose an Ability:</option>
+                        <option value="Pee">Pee</option>
+                        <option value="Fetch">Fetch</option>
+                        <option value="Digging">Digging</option>
+                        <option value="Saliva">Saliva</option>
+                        <option value="Play Dead">Play Dead</option>
+                        <option value="Begging">Begging</option>
+                        <option value="Barking">Barking</option>
+                        <option value="Pouncing">Pouncing</option>
+                        <option value="Shedding">Shedding</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div>
-            <label for="profession">Class</label>
-            <select id="profession" class="select" name="profession">
-                <option value="0">Choose a Class:</option>
-                <option value="Wizard">Wizard</option>
-                <option value="Warrior">Warrior</option>
-                <option value="Archer">Archer</option>
-                <option value="Paladin">Paladin</option>
-                <option value="Priest">Priest</option>
-                <option value="Shifter">Shifter</option>
-                <option value="Bard">Bard</option>
-            </select>
-        </div>
-        <div>
-            <label for="weapon">Weapon</label>
-            <select id="weapon" class="select" name="weapon">
-                <option value="0">Choose a Weapon:</option>
-                <option value="Sword">Sword</option>
-                <option value="Wand">Wand</option>
-                <option value="Stick">Stick</option>
-                <option value="Bow">Bow</option>
-                <option value="Ball">Ball</option>
-                <option value="ChewToy">Chew Toy</option>
-                <option value="Mandolin">Mandolin</option>
-                <option value="Shield">Shield</option>
-            </select>
-        </div>
-        <div>
-            <label for="ability1">Ability 1</label>
-            <select id="abilty1" class="select" name="ability1">
-                <option value="0">Choose an Ability:</option>
-                <option value="Pee">Pee</option>
-                <option value="Fetch">Fetch</option>
-                <option value="Digging">Digging</option>
-                <option value="Saliva">Saliva</option>
-                <option value="Play Dead">Play Dead</option>
-                <option value="Begging">Begging</option>
-                <option value="Barking">Barking</option>
-                <option value="Pouncing">Pouncing</option>
-                <option value="Shedding">Shedding</option>
-            </select>
-        </div>
-        <div>
-            <label for="ability2">Ability 2</label>
-            <select id="abilty2" class="select" name="ability2">
-                <option value="0">Choose an Ability:</option>
-                <option value="Pee">Pee</option>
-                <option value="Fetch">Fetch</option>
-                <option value="Digging">Digging</option>
-                <option value="Saliva">Saliva</option>
-                <option value="Play Dead">Play Dead</option>
-                <option value="Begging">Begging</option>
-                <option value="Barking">Barking</option>
-                <option value="Pouncing">Pouncing</option>
-                <option value="Shedding">Shedding</option>
-            </select>
-        </div>
-        <div>
-            <label for="ability3">Ability 3</label>
-            <select id="abilty3" class="select" name="ability3">
-                <option value="0">Choose an Ability:</option>
-                <option value="Pee">Pee</option>
-                <option value="Fetch">Fetch</option>
-                <option value="Digging">Digging</option>
-                <option value="Saliva">Saliva</option>
-                <option value="Play Dead">Play Dead</option>
-                <option value="Begging">Begging</option>
-                <option value="Barking">Barking</option>
-                <option value="Pouncing">Pouncing</option>
-                <option value="Shedding">Shedding</option>
-            </select>
-        </div>
-        <div>
+        <div class="ml-4 mr-4 form-group">
             <label for="picture">Picture of Companion</label>
-            <img src="https://c.tenor.com/bRtAhRkGXPgAAAAC/doge.gif" alt="default pic" class="character_default_pic">
-            <input type="text" name="picture" placeholder="Post img link here" value="https://c.tenor.com/bRtAhRkGXPgAAAAC/doge.gif">
+            <div class="d-flex justify-content-around">
+                <img src="https://c.tenor.com/bRtAhRkGXPgAAAAC/doge.gif" alt="default pic" class="character_default_pic">
+                <input class="col-7" type="text" name="picture" placeholder="Post img link here" value="https://c.tenor.com/bRtAhRkGXPgAAAAC/doge.gif ">
+            </div>
         </div>
-        <div>
+        <div class="ml-4 mr-4 form-group">
             <label for="story">Background Story</label>
-            <textarea name="story" cols="30" rows="5">Born with mighty abilities to vanquish the evil Catzilla. This companion was summoned by many innocent pups whom suffered from Catzillla's attack.</textarea>
+            <textarea name="story" cols="30" rows="5" class="form-control">Born with mighty abilities to vanquish the evil Catzilla. This companion was summoned by many innocent pups whom suffered from Catzillla's attack.</textarea>
         </div>
-        <button type="submit" value="companion">Submit</button>
+        <p class="text-center" style="color: yellow" >***Choose wisely, options in teal cannot be changed later!***</p>
+        <div class="text-center pixel"><button onmouseover="over(this)" onmouseout="out(this)" class="mx-auto" type="submit" value="companion">Create</button></div>
     </form>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
