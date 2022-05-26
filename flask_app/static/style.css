@@ -4,7 +4,6 @@
 body, html {
     height: 100%;
 }
-/* top | right | bottom | left */
 /* CSS for login and registration page */
 .developers {
     width: 50%;
@@ -34,11 +33,9 @@ body, html {
     height: 70%;
     width: 35%;
 }
-
 .backgrounds {
     background-color: rgb(15, 12, 12);
 }
-
 #text {
     font-family: 'Press Start 2P';
     align-self: center;
@@ -48,7 +45,10 @@ body, html {
     font-size: 18px;
 }
 .battle-stats {
-    border: 5px dashed gray;
+    width: auto;
+    height: 200px;
+    background-color: rgb(220,229,232);
+    border: 5px dashed silver;
     border-radius: 12px;
 }
 #red {
