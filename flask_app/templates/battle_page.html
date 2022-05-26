@@ -23,28 +23,35 @@
         </div>
     </nav>
     <div style="background-color: rgb(220,229,232);" class="col-9 p-4 rounded mx-auto" >
-        <h1 class="text-center ">Roll the dice to test your luck at defeating Catzilla</h1>
-        <div class="d-flex m-4 justify-content-around" >
-            <div>
-                <div id="image"><img src="{{session['companion_img']}}" class="mx-auto rounded" alt="companion picture" style="width:190px;height:250px;" ></div>
-                <h2>Health: {{session['companion_health']}}</h2>
-                <p>Strength: {{session['companion_strength']}}</p>
-                <p>Defense: {{session['companion_defense']}}</p>
-                <p>Luck: {{session['companion_luck']}}</p>
+        <h1 id="text" class="text-center" style="font-size: 24px;">Roll the dice to test your luck at defeating Catzilla</h1>
+        <div class="d-flex justify-content-center m-4" >
+            <div class="d-flex align-items-center battle-stats mr-5">
+                <ul style="list-style-type:none; font-size: 20px; font-weight: bold;" class="pr-5">
+                    <li>Strength: {{session['companion_strength']}}</li>
+                    <li>Defense: {{session['companion_defense']}}</li>
+                    <li>Luck: {{session['companion_luck']}}</li>
+                </ul> 
             </div>
-            <h1 class="m-5">VS.</h1>
             <div>
-                <div id="image"><img id="catzilla" class="mx-auto rounded float-start" src="/static/catzilla.jpeg" alt="Catzilla" style="width:190px;height:250px;"></div>
-                <h2>Health: {{session['boss_health']}}</h2>
-                <p>Strength: {{session['boss_strength']}}</p>
-                <p>Defense: {{session['boss_defense']}}</p>
-                <p>Luck: {{session['boss_luck']}}</p>
+                    <img src="{{session['companion_img']}}" id="image" class="mx-auto rounded" alt="companion picture" style="width:190px;height:250px;" >
+                    <h2 class="text-center pt-2">Health: {{session['companion_health']}}</h2>
+            </div>
+            <div><h1 class="m-5">VS.</h1></div>
+            <div>
+                <img id="catzilla" id="image" class="mx-auto rounded float-start" src="/static/catzilla.jpeg" alt="Catzilla" style="width:190px;height:250px;">
+                <h2 class="text-center pt-2">Health: {{session['boss_health']}}</h2>
+            </div>
+            <div class="d-flex align-items-center battle-stats ml-5">
+                <ul style="list-style-type:none; font-size: 20px; font-weight: bold;" class="pr-5">
+                    <li>Strength: {{session['boss_strength']}}</li>
+                    <li>Defense: {{session['boss_defense']}}</li>
+                    <li>Luck: {{session['boss_luck']}}</li>
+                </ul> 
             </div>
         </div>
         <div id="combat-text" style="height:200px;width:700px;border:1px solid;overflow:auto;" class="text-center mx-auto rounded p-2" >
                 {% for message in session['combat_text']|reverse%}
                     {% if loop.revindex0 % 2 == 0 %}
-
                         <p style="color: red">{{message}}</p>
                     {% else %}
                         <p style="color: blue">{{message}}</p>
