@@ -47,8 +47,10 @@ body, html {
     font-family: 'Quantico';
     font-size: 18px;
 }
-
-
+.battle-stats {
+    border: 5px dashed gray;
+    border-radius: 12px;
+}
 #red {
     background-color: rgba(224,39,32,255);
 }
