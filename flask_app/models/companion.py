@@ -109,6 +109,9 @@ class Companion:
     @classmethod
     def leaderboard(cls):
         query = """
+        # SELECT * FROM companions WHERE score=(select max(score) from companions)
+        # users.first_name, users.last_name,
+        # GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20;
         SELECT MAX(score), companions.name, companions.picture, companions.win, companions.loss, companions.level, companions.updated_at, users.first_name, users.last_name, user_id
         FROM companions JOIN users ON companions.user_id=users.id 
         GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20;

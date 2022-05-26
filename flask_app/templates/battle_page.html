@@ -107,6 +107,10 @@
         <h1 id="text" class="text-center battler" style="font-size: 24px;">Roll the dice to test your luck at defeating Catzilla</h1>
         <div class="d-flex justify-content-center m-4" >
             <div class="d-flex align-items-center battle-stats mr-5 battlel">
+    <div class="col-9 p-4 rounded mx-auto" >
+        <h1 id="text" class="text-center" style="font-size: 24px;">Roll the dice to test your luck at defeating Catzilla</h1>
+        <div class="d-flex justify-content-center m-4" >
+            <div class="d-flex align-items-center battle-stats mr-5 mt-5">
                 <ul style="list-style-type:none; font-size: 20px; font-weight: bold;" class="pr-5">
                     <li>Strength: {{session['companion_strength']}}</li>
                     <li>Defense: {{session['companion_defense']}}</li>
@@ -142,7 +146,7 @@
         </div>
             <div class="d-flex text-center justify-content-around">
                 {%if session['gg'] == True%}
-                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 btn btn-primary btn-lg" href="/end_battle">See Results</a>
+                <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 btn btn-primary btn-lg mt-4" href="/end_battle">See Results</a>
                 {%else%}
                 <a style="background-color: rgba(54,126,147,255);" type="button" class="m-3 btn btn-primary btn-lg battlel" href="/roll_dice">Roll The Dice</a>
                 {%endif%}

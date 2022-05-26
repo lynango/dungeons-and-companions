@@ -23,7 +23,7 @@
         </div>
     </nav>
     <div style="background-color: rgb(220,229,232);" class=" m-2 col-4 p-5 rounded mx-auto" >
-        <h1 class="text-center ">Battle Results</h1>
+        <h1 id="text" class="text-center ">Battle Results</h1>
         <div class="d-flex m-4 justify-content-around" >
             <div>
                 {%if session['result'] == True%}
@@ -32,11 +32,12 @@
                 <div id="image"><img src="/static/catzilla.jpeg" class="mx-auto rounded" alt="companion picture" style="width:190px;height:250px;" ></div>
                 {%endif%}
                 {%if session['result'] == True%} 
-                <h3 class="text-center">Battle Won!</h3>
+                <h1 class="pixel text-center mt-3">Battle Won!</h1>
                 {%else%}
-                <h3 class="text-center">Battle Lost!</h3>
+                <h1 class="pixel text-center mt-3">Battle Lost!</h1>
                 {%endif%}
-                <h2 class="text-center">Score: {{session['score']}}</h2>
+                <hr>
+                <h3 class="text-center">Score: {{session['score']}}</h3>
             </div>
         </div>
             <div class="d-flex text-center justify-content-around">
