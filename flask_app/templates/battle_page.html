@@ -43,7 +43,11 @@
         </div>
         <div style="height:200px;width:700px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;" class="text-center mx-auto" >
                 {% for message in session['combat_text']|reverse%}
-                <p>{{message}}</p>
+                    {% if loop.revindex0 % 2 == 0 %}
+                        <p style="color: red">{{message}}</p>
+                    {% else %}
+                        <p style="color: blue">{{message}}</p>
+                    {% endif %}
                 {%endfor%}
         </div>
             <div class="d-flex text-center justify-content-around">
