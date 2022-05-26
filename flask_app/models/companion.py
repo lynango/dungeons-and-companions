@@ -109,12 +109,13 @@ class Companion:
     @classmethod
     def leaderboard(cls):
         query = """
-        # SELECT * FROM companions WHERE score=(select max(score) from companions)
-        # users.first_name, users.last_name,
-        # GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20;
-        SELECT MAX(score), companions.name, companions.picture, companions.win, companions.loss, companions.level, companions.updated_at, users.first_name, users.last_name, user_id
-        FROM companions JOIN users ON companions.user_id=users.id 
-        GROUP BY user_id ORDER BY MAX(score) desc LIMIT 20;
+        SELECT users.first_name, users.last_name, users.id, companions.name, companions.picture, companions.level, companions.win, companions.loss, companions.updated_at, 
+        MAX(companions.score) OVER (PARTITION BY companions.user_id) AS highscore
+        FROM users, companions 
+        WHERE companions.user_id=users.id
+        GROUP BY user_id
+        ORDER BY highscore DESC
+        LIMIT 20;
         """
         return connectToMySQL(cls.db_name).query_db(query) 
     
