@@ -60,7 +60,7 @@ def dashboard():
         'id': session['user_id']    # ->If the user had logged-in, the user is directed to the dashboard page
     }
     one_user = User.get_one(data)
-    all_companions = Companion.get_all_companions_with_creator()                                                                                                                                              
+    all_companions = Companion.get_all(data)                                                                                                                                              
     return render_template("dashboard.html", current_user = one_user, all_companions = all_companions)
 
 #Process user's request to logout
