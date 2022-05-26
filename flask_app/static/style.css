@@ -74,10 +74,16 @@ body, html {
     min-width: 150px;
     min-height: 150px;
     background-color: black;
+    margin: auto;
 }
 .companion_thumbnail {
     width: 150px;
     height: 100%;
+}
+.thumbnail_border {
+    border: 10px solid transparent;
+    padding: 3px;
+    border-image: url(thumbnail_border.png) 50 round;
 }
 .character_default_pic {
     height: 100px;
@@ -90,6 +96,25 @@ body, html {
     width: 80%;
     margin: auto;
     background-color: rgb(220,229,232);
+}
+.pixel_font {
+    font-family: 'Press Start 2P';
+    font-size: 40px;
+    color: black;
+    margin-bottom: 20px;
+}
+.cursive_font {
+    font-family: cursive;
+    font-weight: bold;
+}
+.align_text_left {
+    text-align: left;
+}
+.dash_action {
+    width: 450px;
+}
+.thumb_column {
+    width: 200px;
 }
 /* Start of View Companion Page CSS Codes */
 .character-page {

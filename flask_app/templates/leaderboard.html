@@ -22,13 +22,14 @@
             <a id="nav-title" class="nav-link" href="/logout">Logout</a>
         </div>
     </nav>
-    <h1 class="text-center">Leaderboard</h1>
-    <div class="leaderboard-table">
-        <table class="table table-striped table-hover">
-            <thead>
+    <h1 class="text-center pixel_font">Leaderboard</h1>
+    <div class="leaderboard-table table-responsive">
+        <table class="table table-striped table-hover align-middle text-center">
+            <thead class="table-dark">
                 <tr>
                     <th>Picture</th>
-                    <th>Name</th>
+                    <th>Player</th>
+                    <th>Companion</th>
                     <th>Score</th>
                     <th>Level</th>
                     <th>Battles Won</th>
@@ -38,16 +39,17 @@
             </thead>
             <tbody>
                 {%for one_score in scores%}
-                <tr>
-                    <td>
-                        <div class="thumbnail"><img src={{one_score["picture"]}} alt="Picture of a Companion" class="companion_thumbnail"/></div>
+                <tr class="cursive_font">
+                    <td class="thumb_column">
+                        <div class="thumbnail"><img src={{one_score["picture"]}} alt="Picture of a Companion" class="companion_thumbnail thumbnail_border"/></div>
                     </td>
-                    <td>{{one_score["name"]}}</td>
-                    <td>{{one_score["MAX(score)"]}}</td>
-                    <td>{{one_score["level"]}}</td>
-                    <td>{{one_score["win"]}}</td>
-                    <td>{{one_score["loss"]}}</td>
-                    <td>{{one_score["updated_at"]}}</td>
+                    <td class="align-middle">{{one_score['first_name']}} {{one_score['last_name']}}</td>
+                    <td class="align-middle">{{one_score["name"]}}</td>
+                    <td class="align-middle">{{one_score["MAX(score)"]}}</td>
+                    <td class="align-middle">{{one_score["level"]}}</td>
+                    <td class="align-middle">{{one_score["win"]}}</td>
+                    <td class="align-middle">{{one_score["loss"]}}</td>
+                    <td class="align-middle">{{one_score["updated_at"]}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
