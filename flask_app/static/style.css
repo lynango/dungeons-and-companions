@@ -59,6 +59,10 @@ body, html {
     font-size: 20px;
     color: white;
 }
+
+.pixel {
+    font-family: 'Press Start 2P';
+}
 #image {
     width: 200px;
     height: 250px;
