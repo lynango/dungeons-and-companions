@@ -227,3 +227,27 @@ body, html {
     font-size: 2vw;
 }
 /* End of View Companion Page CSS Codes */
+
+
+/* Battle Page Animation Stuff */
+#protagonist-parent {
+    position: relative;
+    width: 200px;
+    height: 250px;
+}
+
+.protagonist{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    animation: slide-in 1000ms;
+}
+
+@keyframes explode {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
