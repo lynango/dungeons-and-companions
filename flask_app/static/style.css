@@ -68,6 +68,11 @@ body, html {
     width: 50%;
     background-color: rgb(220,229,232);
 }
+.leaderboard-table {
+    width: 80%;
+    margin: auto;
+    background-color: rgb(220,229,232);
+}
 /* Start of View Companion Page CSS Codes */
 .character-page {
     display: flex;
