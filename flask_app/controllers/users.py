@@ -49,7 +49,7 @@ def login():
         flash("Invalid Email/Password","login") 
         return redirect('/')
     session['user_id'] = user_with_email.id
-    return redirect('/dashboard') 
+    return redirect('/welcome') 
 
 #Validation checkpoint for logged-in users // Renders the Dashboard Page
 @app.route('/dashboard')
