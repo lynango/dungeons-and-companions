@@ -10,6 +10,16 @@
 </head>
 <body class="background">
     <h1 class="text-center">leaderboard</h1>
+    {% for one_score in scores %}
+        <img src={{one_score["picture"]}} alt="Picture of a Companion" width="150" height="150"/>
+        <h4>{{one_score['first_name']}} {{one_score['last_name']}}</h4>
+        <h4>{{one_score["name"]}}</h4>
+        <h4>{{one_score["highscore"]}}</h4>
+        <h4>{{one_score["level"]}}</h4>
+        <h4>{{one_score["win"]}}</h4>
+        <h4>{{one_score["loss"]}}</h4>
+        <h4>{{one_score["updated_at"]}}</h4>
+    {% endfor %}
     {#<nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
         <p id="nav-title" style="font-size: 30px;" class="navbar-brand">Dungeons and Companions</p>
