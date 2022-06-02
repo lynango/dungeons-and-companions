@@ -106,6 +106,14 @@ def leader_board():
     print("**********all scores = ", all_scores)
     return render_template('leaderboard.html', scores = all_scores)
 
+@app.errorhandler(500)
+def internal_error(error):
+    return "500 error"
+
+@app.errorhandler(404)
+def not_found(error):
+    return "404 error",404
+
 #Directs the user to a details page of one of their companions
 @app.route('/companion/<int:id>')
 def one_companion(id):
