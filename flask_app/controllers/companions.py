@@ -101,11 +101,10 @@ def leader_board():
     data ={
         'id': session['user_id']
     }
-    # all_scores = Companion.leaderboard()
+    all_scores = Companion.leaderboard()
     # print("**********all scores type = ", type(all_scores))
     # print("**********all scores = ", all_scores)
-    return render_template('leaderboard.html')
-    # return render_template('leaderboard.html', scores = all_scores)
+    return render_template('leaderboard.html', scores = all_scores)
 
 @app.errorhandler(500)
 def internal_error(error):
