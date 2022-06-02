@@ -65,6 +65,7 @@ class Companion:
         companions = []
         for companion in results:
             companions.append(cls(companion))
+        print(type(companions))
         return companions
 
     #update character information
@@ -118,11 +119,8 @@ class Companion:
         LIMIT 20;
         """
         results = connectToMySQL(cls.db_name).query_db(query)
-        return (results) 
-        # scores = []
-        # for one_score in results:
-        #     scores.append(cls(one_score))
-        # return scores
+        print(type(results))
+        return results
     
 # Retrieve all messages with creator
     @classmethod
