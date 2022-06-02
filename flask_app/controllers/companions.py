@@ -5,10 +5,6 @@ from flask_app.models.breed import Breed
 from flask_app.models.profession import Profession
 from flask_app.models.user import User
 from flask_app.models.weapon import Weapon
-# import logging
-# import traceback
-# from flask import Flask, jsonify
-# from werkzeug.exceptions import HTTPException
 
 #Directs the user to the create companion page
 @app.route('/create-companion')
@@ -109,21 +105,6 @@ def leader_board():
     # print("**********all scores type = ", type(all_scores))
     # print("**********all scores = ", all_scores)
     return render_template('leaderboard.html', scores = scores)
-
-# Debugging internal error messages
-# logger = logging.getLogger()
-# @app.errorhandler(HTTPException)
-# def handle_http_exception(error):
-#     error_dict = {
-#         'code': error.code,
-#         'description': error.description,
-#         'stack_trace': traceback.format_exc() 
-#     }
-#     log_msg = f"HTTPException {error_dict.code}, Description: {error_dict.description}, Stack trace: {error_dict.stack_trace}"
-#     logger.log(msg=log_msg)
-#     response = jsonify(error_dict)
-#     response.status_code = error.code
-#     return response
 
 #Directs the user to a details page of one of their companions
 @app.route('/companion/<int:id>')

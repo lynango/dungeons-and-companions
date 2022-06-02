@@ -118,7 +118,7 @@ class Companion:
         LIMIT 20;
         """
         results = connectToMySQL(cls.db_name).query_db(query)
-        return results 
+        return str(results) 
         # scores = []
         # for one_score in results:
         #     scores.append(cls(one_score))
