@@ -12,26 +12,26 @@ class Companion:
     def __init__(self, data):
         self.id = data['id']
         self.name = data['name']
-        # self.breed = data['breed']
-        # self.profession = data['profession']
-        # self.weapon = data['weapon']
-        # self.ability1 = data['ability1']
-        # self.ability2 = data['ability2']
-        # self.ability3 = data['ability3']
-        # self.picture = data['picture']
-        # self.story = data['story']
-        # self.health = data['health']
-        # self.strength = data['strength']
-        # self.defense = data['defense']
-        # self.luck = data['luck']
-        # self.score = data['score']
-        # self.level = data['level']
-        # self.win = data['win']
-        # self.loss = data['loss']
-        # self.created_at = data['created_at']
-        # self.updated_at = data['updated_at']
-        # self.user_id = data['user_id']
-        # self.creator = None
+        self.breed = data['breed']
+        self.profession = data['profession']
+        self.weapon = data['weapon']
+        self.ability1 = data['ability1']
+        self.ability2 = data['ability2']
+        self.ability3 = data['ability3']
+        self.picture = data['picture']
+        self.story = data['story']
+        self.health = data['health']
+        self.strength = data['strength']
+        self.defense = data['defense']
+        self.luck = data['luck']
+        self.score = data['score']
+        self.level = data['level']
+        self.win = data['win']
+        self.loss = data['loss']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
+        self.user_id = data['user_id']
+        self.creator = None
         
     #create character
     @classmethod
@@ -119,9 +119,7 @@ class Companion:
         LIMIT 20;
         """
         results = connectToMySQL(cls.db_name).query_db(query)
-        scores = []
-        for one_score in results:
-            scores.append(cls(one_score))    
+        scores = results
         print(type(scores))
         return scores
     
