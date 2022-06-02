@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {%for one_companion in all_companions%}
+                    {% for one_companion in all_companions %}
                     <tr class="cursive_font">
                         <td class="thumb_column">
                             <div class="thumbnail"><a href="/companion/{{one_companion.id}}"><img src={{one_companion.picture}} alt="Picture of a Companion" class="companion_thumbnail thumbnail_border"/></a></div>
@@ -49,7 +49,7 @@
                             <a href="/companion/battle_start/{{one_companion.id}}" class="btn btn-dark">BATTLE!</a>
                         </td>
                     </tr>
-                    {%endfor%}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
