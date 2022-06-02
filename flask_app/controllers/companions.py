@@ -95,7 +95,7 @@ def retire_companion(id):
 
 #leaderboard
 @app.route('/leaderboard')
-def leaderboard():
+def leader_board():
     if 'user_id' not in session:
         return redirect('/logout')  
     data ={
