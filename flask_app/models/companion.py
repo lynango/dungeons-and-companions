@@ -65,7 +65,6 @@ class Companion:
         companions = []
         for companion in results:
             companions.append(cls(companion))
-        print(type(companions))
         return companions
 
     #update character information
