@@ -119,8 +119,9 @@ class Companion:
         LIMIT 20;
         """
         results = connectToMySQL(cls.db_name).query_db(query)
-        print(type(results))
-        return results
+        scores = iter(results)
+        print(type(scores))
+        return scores
     
 # Retrieve all messages with creator
     @classmethod
