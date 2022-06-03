@@ -110,13 +110,16 @@ class Companion:
     def leaderboard(cls):
         query = """
     #New MYSQL Query
-        SELECT users.first_name, users.last_name, users.id, companions.name, companions.picture, companions.level, companions.win, companions.loss, companions.updated_at, 
-        MAX(companions.score) AS highscore
-        FROM users, companions 
+        WITH added_row_number AS (
+        SELECT users.first_name, users.last_name, users.id, companions.score as highscore, companions.name, companions.picture, companions.level, companions.win, companions.loss, companions.updated_at,
+        ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY score DESC) AS row_numbe
+        FROM companions, users 
         WHERE companions.user_id=users.id
-        GROUP BY companions.id
-        ORDER BY highscore DESC
-        LIMIT 10;
+        )
+        SELECT *
+        FROM added_row_number
+        WHERE row_numbe = 1
+        LIMIT 20;
     #Old MYSQL Query
         # SELECT users.first_name, users.last_name, users.id, companions.name, companions.picture, companions.level, companions.win, companions.loss, companions.updated_at, 
         # MAX(companions.score) OVER (PARTITION BY companions.user_id) AS highscore
