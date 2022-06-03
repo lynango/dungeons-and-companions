@@ -115,6 +115,7 @@ class Companion:
         ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY score DESC) AS row_numbe
         FROM companions, users 
         WHERE companions.user_id=users.id
+        ORDER BY companions.score DESC
         )
         SELECT *
         FROM added_row_number
